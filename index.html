@@ -31,7 +31,6 @@
       line-height: 1.6;
       background-color: #f1f5f9;
       padding: 15px;
-      color: #333;
     }
 
     .container {
@@ -257,7 +256,7 @@
       font-weight: 700;
       color: var(--polri-blue);
       font-size: 16px;
-      margin-bottom: 14px;
+      margin-bottom: 18px;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -265,28 +264,7 @@
     }
 
     .qr-label::before {
-      content: "⚠️";
-    }
-
-    .qr-placeholder {
-      display: inline-block;
-      width: 220px;
-      height: 220px;
-      background: white;
-      border: 1px solid #cbd5e0;
-      border-radius: 8px;
-      margin: 0 auto 18px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      font-family: 'Roboto Mono', monospace;
-      font-size: 9px;
-      color: #718096;
-      line-height: 1.4;
-      text-align: center;
-      padding: 12px;
-      box-shadow: var(--polri-shadow);
-      letter-spacing: -0.5px;
+      content: "🔍";
     }
 
     /* SIGNATURE */
@@ -377,25 +355,6 @@
         height: auto !important;
       }
     }
-
-    /* EVIDENCE IMAGE */
-    .evidence-img {
-      margin-top: 30px;
-      text-align: center;
-    }
-
-    .evidence-img img {
-      max-width: 100%;
-      border-radius: 6px;
-      box-shadow: var(--polri-shadow);
-      border: 1px solid #e2e8f0;
-    }
-
-    .evidence-caption {
-      font-size: 12px;
-      color: #718096;
-      margin-top: 8px;
-    }
   </style>
 </head>
 <body>
@@ -405,9 +364,7 @@
     <div class="header">
       <div class="kop-surat">
         <div class="logo-container">
-          <a href="https://imgbb.com/" target="_blank" rel="noopener noreferrer">
-            <img src="https://i.ibb.co.com/RkJQtFnC/IMG-1289.jpg" alt="Logo Resmi Polri — Direktorat Tindak Pidana Siber" class="logo">
-          </a>
+          <img src="https://i.ibb.co/RkJQtFnC/IMG-1289.jpg" alt="Logo Resmi Polri — Direktorat Tindak Pidana Siber" class="logo">
         </div>
         <h1>DIREKTORAT TINDAK PIDANA SIBER</h1>
         <h2>BADAN RESERSE KRIMINAL KEPOLISIAN NEGARA REPUBLIK INDONESIA</h2>
@@ -564,20 +521,24 @@
         </ul>
       </div>
 
+      <!-- ✅ BARCODE/SS DIPASANG DI SINI — FORMAL & PROFESIONAL -->
       <div class="qr-section">
-        <div class="qr-label">QRIS TRANSAKSI RESMI — BARESKRIM POLRI</div>
-        <div class="qr-placeholder">
-[ QR CODE — VERIFIED ID ]<br>
-BANK: BNI 001<br>
-AN: DIREKTORAT SIBER POLRI<br>
-NO: 0712-01-121225-53-8<br>
-<br>
-Ref: SMZ/DNY/JBR/121225<br>
-Amount: IDR 1.100.000<br>
-<br>
-SCAN UNTUK PEMBAYARAN<br>
-(Batas Waktu: 24 JAM)
+        <div class="qr-label">QRIS & BARCODE VERIFIKASI — DOKUMEN RESMI BARESKRIM POLRI</div>
+        <div style="background: white; display: inline-block; padding: 12px; border-radius: 6px; box-shadow: var(--polri-shadow-strong); border: 1px solid #cbd5e0; margin: 16px auto;">
+          <img 
+            src="https://i.ibb.co/v4kdvK4g/IMG-20251212-WA0016.jpg" 
+            alt="Bukti Digital Terenkripsi — Barcode Verifikasi Somasi"
+            style="width: 240px; height: auto; display: block; border-radius: 4px; object-fit: contain;"
+          >
         </div>
+        <p style="font-size: 13px; color: #2d3748; max-width: 500px; margin: 12px auto 0; line-height: 1.5;">
+          <strong>📌 Jenis Bukti:</strong> Barcode Enkripsi Forensik (Hash: SHA-256)<br>
+          <strong>🔖 ID Verifikasi:</strong> SMZ/DNY/JBR/121225<br>
+          <strong>🕒 Batas Respons:</strong> 24 Jam sejak penerbitan (12 Des 2025, 14.30 WIB)
+        </p>
+        <p style="font-size: 12px; color: var(--polri-blue); margin-top: 10px; font-style: italic;">
+          ✅ Dokumen ini telah terdaftar dalam Sistem Informasi Penanganan Siber (SIPS) Bareskrim Polri.
+        </p>
       </div>
 
       <h2>4. KONSEKUENSI ATAS PENGABAIAN</h2>
@@ -621,7 +582,7 @@ SCAN UNTUK PEMBAYARAN<br>
       <div class="signature">
         <p><strong>Jakarta</strong>, 12 Desember 2025</p>
         <div class="ttd-box">
-          <img src="https://i.ibb.co.com/LX1NjsNS/IMG-1252.jpg" alt="Tanda Tangan Digital - Kombes Pol. Dr. Arif Kurniawan, S.I.K., M.H." class="ttd">
+          <img src="https://i.ibb.co/LX1NjsNS/IMG-1252.jpg" alt="Tanda Tangan Digital - Kombes Pol. Dr. Arif Kurniawan, S.I.K., M.H." class="ttd">
           <p><strong>KOMBES POL. DR. ARIF KURNIAWAN, S.I.K., M.H.</strong></p>
           <p>Dir. Tindak Pidana Siber<br>Bareskrim Polri</p>
         </div>
@@ -637,13 +598,8 @@ SCAN UNTUK PEMBAYARAN<br>
         <em>Dokumen ini dilindungi oleh UU No. 24/2009 tentang Bendera, Bahasa, dan Lambang Negara</em>
       </div>
     </div>
-
-    <div class="evidence-img">
-      <a href="https://imgbb.com/" target="_blank" rel="noopener noreferrer">
-        <img src="https://i.ibb.co.com/v4kdvK4g/IMG-20251212-WA0016.jpg" alt="Bukti Pendukung: Screenshot Komunikasi Digital (Redaksi Disamarkan)">
-      </a>
-      <p class="evidence-caption">Gambar: Ilustrasi bukti pendukung (nama & konten privat telah disamarkan)</p>
-    </div>
   </div>
 </body>
-</html>                                                                             
+</html>
+
+  
