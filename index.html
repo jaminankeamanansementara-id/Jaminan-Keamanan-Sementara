@@ -2,557 +2,648 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>LADIES MANAGEMENT • Jaminan Keamanan Sementara</title>
-  <meta name="description" content="Surat Pemberitahuan Resmi Penyelesaian Administrasi & Legalitas Jaminan Keamanan Sementara">
-  
-  <!-- Google Fonts -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=IBM+Plex+Serif:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
-  
-  <!-- Font Awesome -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content="Somasi Digital Resmi dari Unit Investigasi Siber — Bareskrim Polri RI" />
+  <title>Somasi Digital Resmi | Bareskrim Polri — Direktorat Tindak Pidana Siber</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>👮</text></svg>">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@300;400;500;600;700&family=Roboto+Mono:wght@400;500&display=swap">
   <style>
-    :root {
-      --navy: #0a0f2c;
-      --navy-darker: #05091a;
-      --gold: #d9a52e;
-      --gold-light: #f5c34a;
-      --gray: #94a3b8;
-      --light: #f8fafc;
-      --border: #e2e8f0;
-      --watermark-opacity: 0.03;
-    }
-
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
     }
 
-    body {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-      line-height: 1.6;
-      color: #1e293b;
-      background-color: #f0f4f9;
-      padding: 20px;
-      position: relative;
+    :root {
+      --polri-blue: #002B5C;
+      --polri-gold: #D4AF37;
+      --polri-red: #C53030;
+      --polri-gray: #4a5568;
+      --polri-light: #f8fafc;
+      --polri-border: #cbd5e0;
+      --polri-shadow: 0 4px 8px rgba(0,0,0,0.08);
+      --polri-shadow-strong: 0 6px 12px rgba(0,0,0,0.12);
     }
 
-    /* Watermark background */
-    body::before {
-      content: '';
-      position: fixed;
-      top: 0; left: 0; width: 100%; height: 100%;
-      background-image: url('https://i.ibb.co.com/7tfwdc3r/Screenshot-20250508-200145.jpg');
-      background-size: 300px;
-      background-repeat: repeat;
-      background-position: center;
-      opacity: var(--watermark-opacity);
-      pointer-events: none;
-      z-index: -1;
+    body {
+      font-family: 'Source Sans 3', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      color: #2d3748;
+      line-height: 1.6;
+      background-color: #f1f5f9;
+      padding: 15px;
+      color: #333;
     }
 
     .container {
-      max-width: 920px;
+      max-width: 900px;
       margin: 0 auto;
     }
 
-    /* Header Kop Surat */
-    .letterhead {
-      background: white;
-      border-radius: 14px;
-      box-shadow: 0 12px 30px -8px rgba(10, 15, 44, 0.25);
-      padding: 48px 60px;
-      position: relative;
-      overflow: hidden;
-      margin-bottom: 36px;
-      border: 1px solid #eef2f7;
-    }
-
-    .letterhead::before {
-      content: '';
-      position: absolute;
-      top: 0; left: 0; right: 0;
-      height: 6px;
-      background: linear-gradient(90deg, var(--navy), var(--gold));
-    }
-
-    .logo {
-      display: flex;
-      align-items: center;
-      gap: 20px;
-      margin-bottom: 22px;
-    }
-
-    .logo-img {
-      height: 64px;
-      border-radius: 8px;
-      box-shadow: 0 4px 8px rgba(0,0,0,0.08);
-    }
-
-    .logo-text h1 {
-      font-weight: 700;
-      font-size: 2.0rem;
-      color: var(--navy);
-      margin: 0;
-      letter-spacing: -0.5px;
-    }
-
-    .logo-text p {
-      font-size: 1.05rem;
-      color: var(--gray);
-      margin-top: 4px;
-      font-weight: 500;
-    }
-
-    .address {
-      font-size: 0.95rem;
-      color: #475569;
-      margin: 14px 0;
-      line-height: 1.55;
-    }
-
-    .contact {
-      display: flex;
-      gap: 30px;
-      font-size: 0.9rem;
-      color: #64748b;
-      flex-wrap: wrap;
-    }
-
-    /* Dokumen Surat */
-    .document {
-      background: white;
-      border-radius: 10px;
-      box-shadow: 0 6px 16px rgba(10, 15, 44, 0.08);
-      padding: 60px;
-      font-family: 'IBM Plex Serif', serif;
-      font-size: 1.05rem;
-      line-height: 1.75;
-      color: #1e293b;
-      position: relative;
-      overflow: hidden;
-    }
-
-    .document::before {
-      content: '';
-      position: absolute;
-      top: 50%; left: 50%;
-      transform: translate(-50%, -50%) rotate(-15deg);
-      width: 600px;
-      height: 600px;
-      background-image: url('https://i.ibb.co.com/7tfwdc3r/Screenshot-20250508-200145.jpg');
-      background-size: contain;
-      opacity: 0.015;
+    /* WATERMARK */
+    .watermark {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%) rotate(-45deg);
+      font-size: 32px;
+      font-weight: 800;
+      color: rgba(0, 43, 92, 0.04);
       pointer-events: none;
       z-index: 0;
+      white-space: nowrap;
+      letter-spacing: 4px;
+      font-family: 'Roboto Mono', monospace;
     }
 
-    .content-wrapper {
+    /* HEADER LOGO & KOP */
+    .header {
       position: relative;
-      z-index: 2;
+      z-index: 1;
+      margin-bottom: 24px;
     }
 
-    .document h1 {
-      font-weight: 600;
-      font-size: 2.1rem;
-      color: var(--navy);
-      text-align: center;
-      margin-bottom: 30px;
-      position: relative;
-    }
-
-    .document h1::after {
-      content: '';
-      position: absolute;
-      bottom: -14px; left: 50%;
-      transform: translateX(-50%);
-      width: 100px;
-      height: 3px;
-      background: var(--gold);
-      border-radius: 2px;
-    }
-
-    .doc-meta {
-      text-align: right;
-      margin-bottom: 32px;
-      font-size: 1.05rem;
-    }
-
-    .doc-meta p {
-      margin: 8px 0;
-      font-weight: 500;
-    }
-
-    .doc-section {
-      margin-bottom: 36px;
-    }
-
-    .doc-section h2 {
-      font-weight: 600;
-      font-size: 1.4rem;
-      color: var(--navy);
-      margin-bottom: 20px;
-      padding-bottom: 10px;
-      border-bottom: 2px solid var(--border);
-    }
-
-    .doc-table {
-      width: 100%;
-      border-collapse: collapse;
-      margin: 24px 0;
-      font-size: 0.98rem;
-    }
-
-    .doc-table th,
-    .doc-table td {
-      padding: 14px 18px;
-      text-align: left;
-      border: 1px solid var(--border);
-    }
-
-    .doc-table th {
-      background-color: #f9fafc;
-      font-weight: 600;
-      color: var(--navy);
-    }
-
-    .doc-table tr:nth-child(even) {
-      background-color: #fcfdff;
-    }
-
-    .status-pending {
-      color: #e11d48;
-      font-weight: 600;
-    }
-
-    .status-done {
-      color: #059669;
-    }
-
-    .customer-card {
-      background: #f8fafc;
-      border: 1px solid #dbeafe;
-      border-radius: 10px;
-      padding: 20px;
-      margin: 24px 0;
-      font-size: 0.98rem;
-    }
-
-    .customer-card h3 {
-      font-weight: 600;
-      color: var(--navy);
-      margin-bottom: 12px;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .customer-card p {
-      margin: 6px 0;
-    }
-
-    .payment-instruction {
-      background: #f0f9ff;
-      border-left: 4px solid var(--gold);
-      padding: 24px;
-      border-radius: 0 10px 10px 0;
-      margin: 28px 0;
-      font-size: 0.98rem;
-    }
-
-    .qr-box {
-      text-align: center;
-      margin: 40px 0;
-    }
-
-    .qr-badge {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      background: #f5f3ee;
-      color: var(--navy);
-      font-weight: 700;
-      padding: 8px 20px;
-      border-radius: 30px;
-      font-size: 0.95rem;
-      border: 1px solid #e0d9c9;
-      margin-bottom: 20px;
-      letter-spacing: 0.5px;
-    }
-
-    .qr-image {
-      width: 240px;
-      height: 240px;
+    .kop-surat {
       background: white;
-      border: 1px solid #e2e8f0;
-      border-radius: 16px;
-      margin: 0 auto 20px;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      box-shadow: 0 6px 16px rgba(0,0,0,0.06);
-      overflow: hidden;
-    }
-
-    .qr-image img {
-      width: 220px;
-      height: 220px;
-      object-fit: contain;
-    }
-
-    .amount-highlight {
-      font-size: 1.6rem;
-      font-weight: 800;
-      color: var(--navy);
+      padding: 28px;
+      border-radius: 8px;
+      box-shadow: var(--polri-shadow);
+      border-top: 4px solid var(--polri-blue);
+      border-left: 3px solid var(--polri-gold);
       text-align: center;
-      margin: 24px 0;
-      background: linear-gradient(90deg, var(--navy), var(--gold));
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+      position: relative;
+    }
+
+    .kop-surat .logo-container {
+      margin-bottom: 16px;
+    }
+
+    .kop-surat img.logo {
+      max-height: 100px;
+      border-radius: 6px;
+      box-shadow: var(--polri-shadow);
+      border: 1px solid #e2e8f0;
+    }
+
+    .kop-surat h1 {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--polri-blue);
+      margin: 12px 0 6px;
       letter-spacing: -0.5px;
     }
 
-    .deadline {
-      text-align: center;
-      font-weight: 700;
-      font-size: 1.3rem;
-      color: #e11d48;
-      margin: 20px 0;
-      padding: 16px;
-      background: #fff1f2;
-      border-radius: 10px;
-      border-left: 4px solid #e11d48;
-    }
-
-    .signature {
-      margin-top: 60px;
-      text-align: right;
-    }
-
-    .signature-line {
-      width: 280px;
-      border-top: 2px solid var(--gold);
-      margin-top: 90px;
-      margin-bottom: 12px;
-    }
-
-    .signature-name {
-      font-weight: 700;
-      font-size: 1.2rem;
-      color: var(--navy);
-    }
-
-    .signature-title {
-      font-size: 1.05rem;
-      color: #64748b;
-      margin-bottom: 6px;
-    }
-
-    .signature-org {
+    .kop-surat h2 {
+      font-size: 16px;
       font-weight: 600;
-      color: var(--gold);
+      color: #1a365d;
+      margin-bottom: 16px;
     }
 
-    .footer-note {
-      background: var(--navy);
-      color: white;
-      padding: 28px;
-      border-radius: 14px;
-      margin-top: 48px;
-      font-size: 0.95rem;
+    .kop-surat p {
+      font-size: 13px;
+      color: var(--polri-gray);
+      max-width: 700px;
+      margin: 0 auto;
+      line-height: 1.5;
+    }
+
+    /* METADATA */
+    .meta {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 10px;
+      margin: 24px 0;
+      font-size: 14px;
+      background: white;
+      padding: 16px;
+      border-radius: 6px;
+      box-shadow: var(--polri-shadow);
+    }
+
+    .meta-row {
+      display: flex;
+    }
+
+    .meta-label {
+      font-weight: 600;
+      width: 100px;
+      color: var(--polri-blue);
+    }
+
+    .meta-value {
+      flex: 1;
+    }
+
+    .meta-value strong {
+      color: #000;
+    }
+
+    /* TO SECTION */
+    .to-section {
+      background: white;
+      padding: 24px;
+      border-radius: 8px;
+      margin: 20px 0;
+      box-shadow: var(--polri-shadow);
+      border-left: 3px solid var(--polri-gold);
+    }
+
+    .to-section h3 {
+      font-size: 16px;
+      margin-bottom: 14px;
+      color: var(--polri-blue);
+      font-weight: 600;
+    }
+
+    /* CONTENT */
+    .content {
+      background: white;
+      padding: 32px;
+      border-radius: 8px;
+      box-shadow: var(--polri-shadow);
       line-height: 1.7;
     }
 
-    .footer-note h3 {
-      font-size: 1.25rem;
-      margin-bottom: 16px;
-      display: flex;
-      align-items: center;
-      gap: 10px;
+    .content h2 {
+      font-size: 20px;
+      margin: 28px 0 16px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid var(--polri-border);
+      color: var(--polri-blue);
+      font-weight: 700;
     }
 
-    .note-list {
-      padding-left: 24px;
+    .content h3 {
+      font-size: 18px;
+      margin: 22px 0 12px;
+      color: #1a365d;
+      font-weight: 600;
+    }
+
+    .content p, .content li {
+      margin-bottom: 12px;
+    }
+
+    ul, ol {
+      padding-left: 26px;
       margin: 14px 0;
     }
 
-    .note-list li {
-      margin-bottom: 10px;
+    li {
+      margin-bottom: 8px;
     }
 
-    .seal {
+    blockquote {
+      background: #ebf4ff;
+      border-left: 4px solid var(--polri-blue);
+      padding: 16px;
+      margin: 20px 0;
+      font-style: italic;
+      border-radius: 0 4px 4px 0;
+      font-size: 14px;
+      color: #1a202c;
+    }
+
+    /* TABLES */
+    .table-responsive {
+      overflow-x: auto;
+      margin: 24px 0;
+      border-radius: 6px;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.04);
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 14px;
+      min-width: 600px;
+    }
+
+    th, td {
+      padding: 14px 16px;
+      text-align: left;
+      border: 1px solid #e2e8f0;
+    }
+
+    th {
+      background-color: var(--polri-blue);
+      color: white;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      font-size: 13px;
+    }
+
+    tr:nth-child(even) {
+      background-color: #f8fafc;
+    }
+
+    tr:hover {
+      background-color: #edf5ff;
+    }
+
+    /* QR & BARCODE */
+    .qr-section {
+      background: #f8fafc;
+      border: 2px dashed #cbd5e0;
+      border-radius: 8px;
+      padding: 26px;
       text-align: center;
-      margin-top: 30px;
-      font-size: 0.85rem;
-      color: #cbd5e1;
+      margin: 28px 0;
+      position: relative;
     }
 
-    @media (max-width: 768px) {
-      .letterhead, .document {
-        padding: 30px 20px;
+    .qr-label {
+      font-weight: 700;
+      color: var(--polri-blue);
+      font-size: 16px;
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+    }
+
+    .qr-label::before {
+      content: "⚠️";
+    }
+
+    .qr-placeholder {
+      display: inline-block;
+      width: 220px;
+      height: 220px;
+      background: white;
+      border: 1px solid #cbd5e0;
+      border-radius: 8px;
+      margin: 0 auto 18px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Roboto Mono', monospace;
+      font-size: 9px;
+      color: #718096;
+      line-height: 1.4;
+      text-align: center;
+      padding: 12px;
+      box-shadow: var(--polri-shadow);
+      letter-spacing: -0.5px;
+    }
+
+    /* SIGNATURE */
+    .signature {
+      margin-top: 40px;
+      text-align: right;
+    }
+
+    .signature .ttd-box {
+      margin: 20px 0;
+      display: inline-block;
+      text-align: center;
+    }
+
+    .signature img.ttd {
+      max-height: 70px;
+      border: 1px solid #e2e8f0;
+      border-radius: 4px;
+      padding: 4px 8px;
+      background: white;
+      box-shadow: var(--polri-shadow);
+    }
+
+    .signature p {
+      margin: 4px 0;
+      font-size: 14px;
+    }
+
+    .signature p:first-of-type {
+      font-weight: 600;
+      color: var(--polri-blue);
+    }
+
+    /* DISCLAIMER */
+    .disclaimer {
+      background: #fff8f8;
+      border-left: 4px solid var(--polri-red);
+      padding: 18px;
+      margin-top: 30px;
+      font-size: 13px;
+      color: var(--polri-red);
+      border-radius: 0 4px 4px 0;
+    }
+
+    .disclaimer h4 {
+      margin-bottom: 10px;
+      font-weight: 700;
+      color: #9b2c2c;
+    }
+
+    .disclaimer ul {
+      margin-top: 8px;
+    }
+
+    /* FOOTER */
+    .footer-note {
+      text-align: center;
+      font-size: 12px;
+      color: #718096;
+      margin-top: 30px;
+      font-style: italic;
+      padding-top: 16px;
+      border-top: 1px solid #edf2f7;
+    }
+
+    /* PRINT */
+    @media print {
+      body {
+        background: white;
+        padding: 0;
       }
-      .contact {
-        flex-direction: column;
-        gap: 10px;
+      .container {
+        max-width: 100%;
       }
-      .qr-image {
-        width: 200px;
-        height: 200px;
+      .watermark {
+        opacity: 0.08 !important;
       }
-      .amount-highlight {
-        font-size: 1.3rem;
+      .noprint {
+        display: none;
       }
-      .signature-line {
-        width: 220px;
+      a[href]::after {
+        content: " (" attr(href) ")";
+        font-size: 10px;
+        color: #718096;
       }
-      .deadline {
-        font-size: 1.1rem;
+      img {
+        max-width: 100% !important;
+        height: auto !important;
       }
+    }
+
+    /* EVIDENCE IMAGE */
+    .evidence-img {
+      margin-top: 30px;
+      text-align: center;
+    }
+
+    .evidence-img img {
+      max-width: 100%;
+      border-radius: 6px;
+      box-shadow: var(--polri-shadow);
+      border: 1px solid #e2e8f0;
+    }
+
+    .evidence-caption {
+      font-size: 12px;
+      color: #718096;
+      margin-top: 8px;
     }
   </style>
 </head>
 <body>
+  <div class="watermark">BAHAN INTERNAL — TINGKAT RAHASIA</div>
+
   <div class="container">
-    <!-- Kop Surat -->
-    <header class="letterhead">
-      <div class="logo">
-        <img src="https://i.ibb.co.com/HfWc3svL/IMG-20251201-135238.jpg" alt="Ladies Management Logo" class="logo-img">
-        <div class="logo-text">
-          <h1>LADIES MANAGEMENT</h1>
-          <p>Professional Talent Management & Entertainment Solutions</p>
+    <div class="header">
+      <div class="kop-surat">
+        <div class="logo-container">
+          <a href="https://imgbb.com/" target="_blank" rel="noopener noreferrer">
+            <img src="https://i.ibb.co.com/RkJQtFnC/IMG-1289.jpg" alt="Logo Resmi Polri — Direktorat Tindak Pidana Siber" class="logo">
+          </a>
+        </div>
+        <h1>DIREKTORAT TINDAK PIDANA SIBER</h1>
+        <h2>BADAN RESERSE KRIMINAL KEPOLISIAN NEGARA REPUBLIK INDONESIA</h2>
+        <p>Jl. Trunojoyo No. 3, Kebayoran Baru, Jakarta Selatan 12110<br>
+        📞 (021) 551-2105 | 🌐 www.polri.go.id | 📧 cybercrime@polri.go.id</p>
+      </div>
+
+      <div class="meta">
+        <div class="meta-row">
+          <span class="meta-label">Nomor</span>
+          <span class="meta-value">: B/1212/DIS.II/2025</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-label">Sifat</span>
+          <span class="meta-value">: <strong>SEGERA — TINGKAT AKHIR</strong></span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-label">Lampiran</span>
+          <span class="meta-value">: 1 berkas (Formulir Respons & Bukti Pendukung)</span>
+        </div>
+        <div class="meta-row">
+          <span class="meta-label">Perihal</span>
+          <span class="meta-value">: Somasi Final atas Dugaan Pelanggaran UU ITE & KUHP</span>
         </div>
       </div>
-      <div class="address">
-        Menara Prima, Jl. HR Rasuna Said Kav. C-5, Jakarta Selatan 12940
+
+      <div class="to-section">
+        <h3>Kepada Yth.</h3>
+        <p><strong>Sdr. DENNY</strong></p>
+        <p>📱 Nomor Teridentifikasi: <strong>+62 812-4916-7286</strong></p>
+        <p>📍 Lokasi Terpantau (12 Des 2025, pukul 14.30 WIB):<br>
+        Jl. Prambanan No. 75, Desa Kertosari, Kec. Pakusari<br>
+        Kab. Jember, Jawa Timur 68181</p>
       </div>
-      <div class="contact">
-        <span><i class="fas fa-phone"></i> +62 812-XXXX-XXXX</span>
-        <span><i class="fas fa-envelope"></i> admin@ladiesmanagement.id</span>
-        <span><i class="fas fa-globe"></i> www.ladiesmanagement.id</span>
+    </div>
+
+    <div class="content">
+      <h2>1. DASAR SOMASI</h2>
+      <p>Berdasarkan:</p>
+      <ul>
+        <li>Hasil <strong>penyelidikan digital terbatas</strong> oleh Tim Siber Bareskrim Polri, tanggal <strong>12 Desember 2025</strong>;</li>
+        <li>Bukti awal berupa log komunikasi, pola transaksi, dan triangulasi lokasi;</li>
+        <li>Prinsip <strong>perlindungan masyarakat digital</strong> sesuai <strong>Pembukaan UUD 1945</strong> dan <strong>Pasal 28J ayat (2)</strong>.</li>
+      </ul>
+
+      <blockquote>
+        <strong>Alinea IV UUD 1945</strong>:<br>
+        <em>“…melindungi segenap bangsa Indonesia dan seluruh tumpah darah Indonesia… serta mewujudkan keadilan sosial bagi seluruh rakyat Indonesia.”</em><br><br>
+        <strong>Pasal 28J ayat (2) UUD 1945</strong>:<br>
+        <em>“Dalam menjalankan hak dan kebebasannya, setiap orang wajib tunduk kepada pembatasan yang ditetapkan dengan undang-undang… demi menjaga keamanan, ketertiban, kepentingan umum, dan moralitas.”</em>
+      </blockquote>
+
+      <p>Jika dibiarkan, aktivitas dimaksud berpotensi:</p>
+      <ul>
+        <li>Merusak tatanan sosial (melanggar Pancasila Sila ke-2 & ke-5),</li>
+        <li>Memicu eksploitasi pihak rentan,</li>
+        <li>Melemahkan kepercayaan publik terhadap ruang digital nasional.</li>
+      </ul>
+      <p>Somasi ini merupakan <strong>peringatan terakhir sebelum tindakan hukum resmi</strong>.</p>
+
+      <h2>2. TEMUAN & DASAR HUKUM</h2>
+      <p>Indikasi kuat pelanggaran:</p>
+
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th>No.</th>
+              <th>Aktivitas Terindikasi</th>
+              <th>Bukti Digital</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>1</td><td>Penawaran layanan seksual via platform digital</td><td>Pola kata kunci, jadwal temu, negosiasi tarif</td></tr>
+            <tr><td>2</td><td>Pengarahan ke lokasi tertentu (hotel/resort)</td><td>Chat koordinasi alamat & waktu</td></tr>
+            <tr><td>3</td><td>Penyebaran konten eksplisit sebagai “sampel”</td><td>Pertukaran foto/video privat</td></tr>
+            <tr><td>4</td><td>Pemanfaatan multi-akun & nomor sementara</td><td>Rekam jejak akun pendukung</td></tr>
+          </tbody>
+        </table>
       </div>
-    </header>
 
-    <!-- Dokumen Surat -->
-    <main class="document">
-      <div class="content-wrapper">
-        <h1>SURAT PEMBERITAHUAN RESMI</h1>
-        <div class="doc-meta">
-          <p><strong>Nomor</strong>: LM/ADM/JS/12/2025</p>
-          <p><strong>Tanggal</strong>: 11 Desember 2025</p>
-        </div>
+      <p>Pelanggaran tersebut berpotensi masuk ranah:</p>
 
-        <p>Kepada Yth.<br>
-        <strong>Bapak Eri Suparjan</strong></p>
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th>Dasar Hukum</th>
+              <th>Pasal & Sanksi</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td><strong>UU No. 11/2008 jo. UU 19/2016 tentang ITE</strong></td>
+              <td>Pasal 27 ayat (1):<br><em>Pidana maks. 6 tahun & denda Rp1 miliar</em></td>
+            </tr>
+            <tr>
+              <td><strong>KUHP</strong></td>
+              <td>Pasal 296 (Perantara Prostitusi):<br><em>Maks. 1,5 tahun</em><br>Pasal 506 (Perbuatan Cabul):<br><em>Maks. 2 tahun 8 bulan</em></td>
+            </tr>
+            <tr>
+              <td><strong>UU No. 27/2022 tentang PDP</strong></td>
+              <td>Pasal 59:<br><em>Penyalahgunaan data pribadi untuk aktivitas ilegal</em></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
-        <div class="customer-card">
-          <h3><i class="fas fa-user-circle"></i> Data Customer Terdaftar</h3>
-          <p><strong>No. HP</strong>: (+62) 858-1300-2382</p>
-          <p><strong>Lokasi Pertemuan</strong>: Hotel Swiss-Belinn Simatupang<br>
-          Jl. R.A. Kartini No. 32, RT.07/RW.07, Lebak Bulus, Cilandak, Jakarta Selatan 12440</p>
-        </div>
+      <h2>3. PERMINTAAN RESMI & OPSI KOMITMEN</h2>
+      <p>Saudara <strong>WAJIB</strong>:</p>
+      <ol>
+        <li><strong>Menghentikan seketika</strong> seluruh aktivitas terkait layanan seksual berbayar.</li>
+        <li><strong>Menghapus permanen</strong> konten, riwayat chat, akun, dan data terkait.</li>
+        <li><strong>Memberikan klarifikasi tertulis</strong> dalam <strong>24 jam</strong>.</li>
+        <li><strong>Menonaktifkan nomor +62 812-4916-7286</strong> dan semua akun digital pendukung.</li>
+      </ol>
 
-        <p><strong>Perihal</strong>: Kewajiban Penyelesaian Jaminan Keamanan Sementara (JKS)</p>
+      <h3>✅ OPSI KOMITMEN SUKARELA (Restorasi Digital)</h3>
+      <p>Sebagai bentuk itikad baik, Saudara dapat menyelesaikan komitmen sukarela:</p>
+      <p><strong>Rp 1.100.000 (Satu Juta Seratus Ribu Rupiah)</strong></p>
 
-        <div class="doc-section">
-          <h2>I. STATUS ADMINISTRASI SAAT INI</h2>
-          <table class="doc-table">
-            <thead>
-              <tr>
-                <th>Komponen</th>
-                <th>Status</th>
-                <th>Nilai</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>Dana Tanda Jadi (DP)</td>
-                <td><span class="status-done">✅ Telah Diterima</span></td>
-                <td>Rp50.000,00</td>
-              </tr>
-              <tr>
-                <td>Jaminan Keamanan Sementara</td>
-                <td><span class="status-pending">⚠️ Belum Diselesaikan</span></td>
-                <td><strong>Rp350.000,00</strong></td>
-              </tr>
-              <tr>
-                <td><strong>Total Wajib Selesai</strong></td>
-                <td colspan="2"><strong>Rp400.000,00</strong> (DP + JKS)</td>
-              </tr>
-            </tbody>
-          </table>
-          <p><em>❗ Tanpa penyelesaian JKS, aktivasi layanan tidak dapat diproses. Talent (Lidya) belum diberi mandat operasional.</em></p>
-        </div>
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th>Komponen</th>
+              <th>Nilai</th>
+              <th>Keterangan</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Jaminan Penghentian Aktivitas</td>
+              <td>Rp 100.000</td>
+              <td>Komitmen awal & verifikasi lapangan</td>
+            </tr>
+            <tr>
+              <td>Netralisasi Jejak Digital</td>
+              <td>Rp 1.000.000</td>
+              <td>Pembersihan metadata, log, dan clearance data</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
 
-        <div class="deadline">
-          <i class="fas fa-hourglass-half"></i> BATAS WAKTU PEMBAYARAN:  
-          <strong>Kamis, 11 Desember 2025 — Pukul 16.42 WIB</strong>
-        </div>
+      <div class="disclaimer">
+        <h4>📌 Catatan Resmi:</h4>
+        <ul>
+          <li>Pembayaran <strong>bersifat sukarela</strong> berdasarkan <strong>Pasal 1338 KUHPerdata</strong> (kebebasan berkontrak).</li>
+          <li>Dana dialokasikan untuk:<br>
+            ▪️ Operasional forensik digital (pelaporan ke BSSN/Kominfo)<br>
+            ▪️ Donasi ke Lembaga Perlindungan Anak (LPA Jember)</li>
+          <li><strong>Tidak ada pungutan liar.</strong> Segala bentuk permintaan di luar mekanisme ini adalah penipuan.</li>
+        </ul>
+      </div>
 
-        <div class="doc-section">
-          <h2>II. INSTRUKSI PEMBAYARAN — QRIS RESMI</h2>
-          <p>Sebagai bentuk komitmen terhadap keamanan, transparansi, dan kemudahan transaksi digital, pembayaran Jaminan Keamanan Sementara dilakukan melalui <strong>QRIS (Quick Response Code Indonesian Standard)</strong> yang terdaftar dan diawasi oleh Bank Indonesia.</p>
-
-          <div class="payment-instruction">
-            <p><i class="fas fa-info-circle"></i> <strong>Petunjuk Pembayaran:</strong></p>
-            <ol class="note-list">
-              <li>Buka aplikasi dompet digital (GoPay, OVO, DANA, LinkAja) atau mobile banking (BCA, BNI, Mandiri, dll.)</li>
-              <li>Pilih menu <strong>“Scan QR”</strong></li>
-              <li>Arahkan kamera ke <strong>barcode QRIS di bawah ini</strong></li>
-              <li>Verifikasi nama merchant: <strong>LADIES MANAGEMENT</strong></li>
-              <li>Pastikan jumlah: <strong>Rp350.000,00</strong></li>
-              <li>Konfirmasi & selesaikan pembayaran</li>
-            </ol>
-          </div>
-
-          <div class="amount-highlight">
-            Jumlah yang Harus Dibayar: Rp350.000,00
-          </div>
-
-          <div class="qr-box">
-            <div class="qr-badge">
-              <i class="fas fa-qrcode"></i> QRIS BI Licensed • Pembayaran Resmi
-            </div>
-            <div class="qr-image">
-              <img src="https://i.ibb.co.com/3Y53FWMn/qr-8.png" alt="QRIS Pembayaran JKS">
-            </div>
-            <p><small><em>Barcode ini sah dan terenkripsi. Hanya berlaku untuk transaksi ini.</em></small></p>
-          </div>
-        </div>
-
-        <div class="doc-section">
-          <h2>III. KONFIRMASI & AKTIVASI OTOMATIS</h2>
-          <p>Sistem kami terintegrasi langsung dengan gateway pembayaran nasional. Setelah pembayaran sukses:</p>
-          <ul class="note-list">
-            <li>✅ Notifikasi otomatis via WhatsApp ke <strong>(+62) 858-1300-2382</strong> dalam ≤5 menit</li>
-            <li>✅ Jadwal sesi dengan Talent (Lidya) dikirim instan</li>
-            <li>✅ Status JKS berubah menjadi <em>“Dalam Proses”</em></li>
-          </ul>
-        </div>
-
-        <div class="signature">
-          <div class="signature-line"></div>
-          <p class="signature-name">Rina Widyastuti, S.H.</p>
-          <p class="signature-title">Operational & Compliance Manager</p>
-          <p class="signature-org">LADIES MANAGEMENT</p>
+      <div class="qr-section">
+        <div class="qr-label">QRIS TRANSAKSI RESMI — BARESKRIM POLRI</div>
+        <div class="qr-placeholder">
+[ QR CODE — VERIFIED ID ]<br>
+BANK: BNI 001<br>
+AN: DIREKTORAT SIBER POLRI<br>
+NO: 0712-01-121225-53-8<br>
+<br>
+Ref: SMZ/DNY/JBR/121225<br>
+Amount: IDR 1.100.000<br>
+<br>
+SCAN UNTUK PEMBAYARAN<br>
+(Batas Waktu: 24 JAM)
         </div>
       </div>
-    </main>
 
-    <!-- Catatan Kaki -->
-    <footer class="footer-note">
-      <h3><i class="fas fa-balance-scale"></i> Legalitas & Perlindungan Data</h3>
-      <p>Pembayaran melalui QRIS dilindungi oleh <strong>Peraturan Bank Indonesia No. 22/23/PBI/2020</strong>. Seluruh transaksi menggunakan enkripsi TLS 1.3 dan tidak menyimpan data sensitif Customer.</p>
-      <p>Jaminan Keamanan Sementara bersifat <em>refundable 100%</em> jika tidak terjadi pelanggaran (khususnya: perekaman/distribusi konten VCS). Pelanggaran dikenai sanksi sesuai <strong>UU No. 27 Tahun 2022 tentang PDP</strong> dan <strong>UU ITE Pasal 27 ayat (1)</strong>.</p>
-      <p><small>Dokumen ini berlaku sebagai bagian mengikat dari Perjanjian Layanan. Versi lengkap Term of Service: <a href="https://www.ladiesmanagement.id/tos" style="color:#f5c34a">ladiesmanagement.id/tos</a></small></p>
-      
-      <div class="seal">
-        © 2025 LADIES MANAGEMENT — Terdaftar di Kemenkumham RI: AHU-00123.AH.01.04.TAHUN 2024
+      <h2>4. KONSEKUENSI ATAS PENGABAIAN</h2>
+      <p>Jika tidak ada respons dalam <strong>24 jam</strong>:</p>
+
+      <div class="table-responsive">
+        <table>
+          <thead>
+            <tr>
+              <th>Tahapan</th>
+              <th>Tindakan</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>Eskalasi Bukti</td>
+              <td>Penyusunan <strong>Berkas Laporan Resmi (BLR)</strong> lengkap dengan metadata & hash verifikasi.</td>
+            </tr>
+            <tr>
+              <td>Pelaporan Resmi</td>
+              <td>Penyerahan ke <strong>Ditreskrimsus Polda Jatim</strong> & <strong>Ditreskrimsiber Bareskrim Polri</strong>.</td>
+            </tr>
+            <tr>
+              <td>Publikasi Terbatas</td>
+              <td>Pendaftaran ke <strong>Database Ancaman Siber Nasional (DAT-SIBER)</strong>.</td>
+            </tr>
+            <tr>
+              <td>Proses Hukum</td>
+              <td>Tanpa pemberitahuan tambahan — penanganan sepenuhnya oleh aparat berwenang.</td>
+            </tr>
+          </tbody>
+        </table>
       </div>
-    </footer>
+
+      <p><strong>❗ Penghapusan bukti setelah somasi akan dicatat sebagai pemberat (aggravating circumstance).</strong></p>
+
+      <h2>5. PENUTUP</h2>
+      <p>Somasi ini dikeluarkan dalam rangka <strong>penegakan hukum berkeadilan</strong> dan <strong>perlindungan masyarakat digital</strong>.</p>
+      <p>Kami memberikan <strong>kesempatan terakhir</strong> untuk memperbaiki dan menyelesaikan secara sukarela.</p>
+
+      <div class="signature">
+        <p><strong>Jakarta</strong>, 12 Desember 2025</p>
+        <div class="ttd-box">
+          <img src="https://i.ibb.co.com/LX1NjsNS/IMG-1252.jpg" alt="Tanda Tangan Digital - Kombes Pol. Dr. Arif Kurniawan, S.I.K., M.H." class="ttd">
+          <p><strong>KOMBES POL. DR. ARIF KURNIAWAN, S.I.K., M.H.</strong></p>
+          <p>Dir. Tindak Pidana Siber<br>Bareskrim Polri</p>
+        </div>
+      </div>
+
+      <div class="disclaimer">
+        <h4>‼️DISCLAIMER RESMI:</h4>
+        <p><em>Somasi ini bersifat resmi, surat panggilan resmi. hak pelapor untuk melaporkan ke pihak berwajib.</em></p>
+      </div>
+
+      <div class="footer-note">
+        © 2025 Direktorat Tindak Pidana Siber — Badan Reserse Kriminal POLRI<br>
+        <em>Dokumen ini dilindungi oleh UU No. 24/2009 tentang Bendera, Bahasa, dan Lambang Negara</em>
+      </div>
+    </div>
+
+    <div class="evidence-img">
+      <a href="https://imgbb.com/" target="_blank" rel="noopener noreferrer">
+        <img src="https://i.ibb.co.com/v4kdvK4g/IMG-20251212-WA0016.jpg" alt="Bukti Pendukung: Screenshot Komunikasi Digital (Redaksi Disamarkan)">
+      </a>
+      <p class="evidence-caption">Gambar: Ilustrasi bukti pendukung (nama & konten privat telah disamarkan)</p>
+    </div>
   </div>
 </body>
-</html>
-
+</html>                                                                             
