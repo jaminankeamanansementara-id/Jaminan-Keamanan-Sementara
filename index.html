@@ -63,9 +63,6 @@
         .tagihan-info {
             font-size: 12pt; margin: 5px 0;
         }
-        .djbc-logo {
-            height: 80px; margin-top: 10px;
-        }
 
         .invoice-title {
             text-align: right; font-size: 20pt; font-weight: bold; color: #002B5B; margin: 10px 0;
@@ -162,10 +159,138 @@
                     <div style="margin: 15px 0; font-weight: bold; color: #002B5B;">Info Perusahaan</div>
                     <hr style="border: 1px solid #2C3E50; margin: 10px 0;" />
                     <div style="font-weight: bold; color: #002B5B; margin: 15px 0;">WEBSITE LEGALISASI</div>
-                    <img src="https://i.ibb.co/xqWySTCH/IMG-20251209-080224.jpg" alt="BEA CUKAI" class="website-logo" />
+                    <img src="https://i.ibb.co/xqWySTCH/IMG-20260103-142950-699.jpg" alt="BEA CUKAI" class="website-logo" />
                 </div>
                 <div class="header-right">
                     <div class="invoice-title">Invoice</div>
                     <div style="text-align: right;">
-                        <div class="tagihan-title">DIREKTORAT JENDERAL PAJAK - BEA DAN CUKAI - LEGALISASI</div>
-                        <div class="tagihan-info">Referensi &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp
+                        <div class="tagihan-title">DIREKTORAT JENDERAL BEA DAN CUKAI</div>
+                        <div class="tagihan-info"><strong>Tagihan Untuk:</strong></div>
+                        <div class="tagihan-info">Nama &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Abizar</div>
+                        <div class="tagihan-info">Alamat &nbsp;&nbsp;&nbsp;: Ilan Husain Jeddawi dekat Kaluku Resto (Ajija Laundry), Kec. Tanete Riattang Bar., Kabupaten Bone, Sulawesi Selatan 92712</div>
+                        <div class="tagihan-info">Telepon &nbsp;&nbsp;: 085255229222</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- TABEL PRODUK -->
+            <table class="product-table">
+                <thead>
+                    <tr>
+                        <th width="40%">Deskripsi Produk</th>
+                        <th width="15%">Qty</th>
+                        <th width="20%">Harga Satuan</th>
+                        <th width="25%">Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Rokok (tanpa dokumen cukai lengkap)<br>
+                            Nomor Resi: 001797570433<br>
+                            Ekspedisi: Sicepat Express<br>
+                            Jumlah: 6 slop (1.200 batang)
+                        </td>
+                        <td>1</td>
+                        <td>Rp 1.250.000,00</td>
+                        <td><strong>Rp 1.250.000,00</strong></td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <!-- KETERANGAN & SYARAT -->
+            <div class="section-container">
+                <div class="section">
+                    <div class="section-title">Keterangan</div>
+                    <p>Barang dalam proses verifikasi legalitas. Diberikan kesempatan penyelesaian melalui jaminan sementara sesuai PER-12/BC/2024.</p>
+                    <p>Restitusi 80% (Rp 1.000.000,00) akan diberikan setelah dokumen pendukung (NIB, NPWP, izin edar) diverifikasi dan disetujui.</p>
+                </div>
+                <div class="section">
+                    <div class="section-title">Syarat & Ketentuan</div>
+                    <ul>
+                        <li>Penyelesaian maksimal 1×24 jam sejak tanggal 3 Januari 2026.</li>
+                        <li>Jika tidak diselesaikan, barang dinyatakan sebagai <strong>Barang Temuan</strong> dan akan disita.</li>
+                        <li>Proses lebih lanjut mengacu pada UU Cukai No. 39 Tahun 2007.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <!-- TANDA TANGAN -->
+            <div class="footer-signature">
+                <div class="signature-box">
+                    <div>Makassar, 3 Januari 2026</div>
+                    <img src="https://i.ibb.co/F49VbWY6/IMG-20251215-222532-817.jpg" alt="Tanda Tangan" />
+                    <div class="signature-name">ANDI PRATAMA, S.E.</div>
+                    <div class="signature-nip">NIP. 19900512 201612 1 005</div>
+                </div>
+                <div class="signature-box">
+                    <img src="https://i.ibb.co/dJzTbk6p/IMG-20260103-140010.jpg" alt="Stempel" />
+                    <div class="signature-name">DR. MUHAMMAD RIZAL, S.H., M.H.</div>
+                    <div class="signature-nip">Kepala Kantor</div>
+                </div>
+            </div>
+
+            <div class="copyright">
+                <p>© 2026 Direktorat Jenderal Bea dan Cukai — Kementerian Keuangan RI</p>
+                <p>Dokumen ini sah secara administratif dan dapat digunakan sebagai dasar penyelesaian internal.</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="ui-controls">
+        <button id="downloadPdfBtnBottom" class="download-btn">📥 Unduh PDF Resmi Sekarang</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const btnTop = document.getElementById('downloadPdfBtn');
+            const btnBottom = document.getElementById('downloadPdfBtnBottom');
+            const element = document.getElementById('pdfContent');
+
+            function generatePDF() {
+                btnTop.disabled = true;
+                btnBottom.disabled = true;
+                btnTop.textContent = '⏳ Sedang Memproses...';
+                btnBottom.textContent = '⏳ Sedang Memproses...';
+
+                const opt = {
+                    margin: [15, 12, 15, 12],
+                    filename: 'Invoice_Jaminan_Legalitas_Abizar_BeaCukai_Makassar.pdf',
+                    image: { type: 'jpeg', quality: 0.98 },
+                    html2canvas: {
+                        scale: 2.5,
+                        useCORS: true,
+                        logging: false,
+                        letterRendering: true,
+                        allowTaint: false,
+                        backgroundColor: null
+                    },
+                    jsPDF: {
+                        unit: 'mm',
+                        format: 'a4',
+                        orientation: 'portrait'
+                    }
+                };
+
+                html2pdf().set(opt).from(element).save()
+                    .then(() => {
+                        btnTop.disabled = false;
+                        btnBottom.disabled = false;
+                        btnTop.textContent = '📥 Download PDF (Resmi & Ber-Watermark)';
+                        btnBottom.textContent = '📥 Unduh PDF Resmi Sekarang';
+                    })
+                    .catch(err => {
+                        console.error('PDF Error:', err);
+                        alert('Gagal membuat PDF. Pastikan koneksi stabil dan gunakan browser Chrome/Edge terbaru.');
+                        btnTop.disabled = false;
+                        btnBottom.disabled = false;
+                        btnTop.textContent = '⚠️ Coba Lagi';
+                        btnBottom.textContent = '⚠️ Coba Lagi';
+                    });
+            }
+
+            btnTop.addEventListener('click', generatePDF);
+            btnBottom.addEventListener('click', generatePDF);
+        });
+    </script>
+</body>
+</html>
