@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Invoice Jaminan Legalitas Sementara – Bea Cukai Makassar</title>
+    <title>SURAT PEMBERITAHUAN JAMINAN LEGALITAS SEMENTARA</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -11,11 +11,11 @@
             font-family: 'Times New Roman', Times, serif;
             line-height: 1.5;
             color: #000;
-            background-color: #fff;
+            background: #fff;
             padding: 20px;
         }
         .ui-controls {
-            text-align: center; margin: 15px 0; z-index: 10; position: relative;
+            text-align: center; margin: 15px 0; position: relative; z-index: 10;
         }
         .download-btn {
             background: #002B5B; color: white; border: none; padding: 12px 28px;
@@ -40,104 +40,134 @@
         }
         .content-layer { position: relative; z-index: 1; }
 
-        /* HEADER DUA KOLOM */
-        .header-container {
-            display: flex; justify-content: space-between; gap: 20px; margin-bottom: 20px;
+        .header {
+            display: flex; justify-content: space-between; gap: 20px; margin-bottom: 25px;
         }
-        .header-left {
+        .left-col {
             width: 45%;
         }
-        .header-right {
+        .right-col {
             width: 55%;
             text-align: right;
         }
         .logo-wajib {
-            height: 80px; margin-bottom: 15px;
+            height: 80px; margin-bottom: 10px;
         }
-        .website-logo {
-            width: 100%; max-width: 350px; margin-bottom: 20px;
+        .info-perusahaan {
+            font-weight: bold; color: #002B5B; margin: 10px 0;
         }
-        .tagihan-title {
-            font-size: 14pt; font-weight: bold; margin: 10px 0;
+        .separator {
+            border: 1px solid #000; margin: 10px 0;
         }
-        .tagihan-info {
-            font-size: 12pt; margin: 5px 0;
+        .website-title {
+            font-weight: bold; color: #002B5B; margin: 10px 0;
+        }
+        .logo-beacukai {
+            height: 70px; margin-top: 10px;
         }
 
         .invoice-title {
-            text-align: right; font-size: 20pt; font-weight: bold; color: #002B5B; margin: 10px 0;
+            font-size: 20pt; font-weight: bold; color: #002B5B; margin: 10px 0;
+        }
+        .ref-title {
+            font-size: 12pt; font-weight: bold; margin: 5px 0;
+        }
+        .ref-value {
+            font-size: 12pt; margin: 5px 0;
         }
 
-        /* TABEL PRODUK */
+        /* TABEL */
         .product-table {
             width: 100%; border-collapse: collapse; margin: 20px 0;
         }
         .product-table th {
-            background: #2C3E50; color: white; padding: 10px; text-align: left; font-weight: bold;
+            background: #2C3E50; color: white; padding: 10px; text-align: left;
         }
         .product-table td {
-            padding: 10px; border: 1px solid #ccc; vertical-align: top;
+            padding: 10px; border: 1px solid #000; vertical-align: top;
         }
         .product-table tr:nth-child(even) {
             background-color: #f9f9f9;
         }
-
-        /* BAGIAN KETERANGAN & SYARAT */
-        .section-container {
-            display: flex; gap: 20px; margin: 30px 0;
+        .total-row td {
+            font-weight: bold;
         }
-        .section {
+
+        /* BAGIAN BAWAH */
+        .bottom-section {
+            display: flex; gap: 30px; margin: 30px 0;
+        }
+        .box {
             width: 50%;
+            padding: 15px;
+            border: 1px solid #000;
         }
-        .section-title {
-            font-size: 13pt; font-weight: bold; margin: 15px 0 10px; border-bottom: 2px solid #2C3E50; padding-bottom: 5px;
+        .box-title {
+            font-weight: bold;
+            text-decoration: underline;
+            margin-bottom: 10px;
+            color: #002B5B;
         }
-        .section p,
-        .section ul {
-            margin: 8px 0; font-size: 12pt;
+        .box ul {
+            margin: 10px 0 10px 20px;
+            padding-left: 10px;
         }
-        .section ul {
-            margin-left: 20px;
-            list-style-type: decimal;
+        .box li {
+            margin: 6px 0;
+            font-size: 12pt;
         }
 
-        /* FOOTER TANDA TANGAN */
-        .footer-signature {
-            margin-top: 50px; display: flex; justify-content: flex-end; gap: 50px;
+        /* TANDA TANGAN */
+        .signature-area {
+            margin-top: 40px;
+            display: flex;
+            justify-content: flex-end;
+            gap: 60px;
         }
-        .signature-box {
-            text-align: center; width: 250px;
+        .signature {
+            text-align: center;
+            width: 220px;
         }
-        .signature-box img {
-            width: 150px; height: auto; margin: 10px auto;
+        .signature img {
+            height: 80px; margin: 10px auto;
         }
-        .signature-name {
-            font-weight: bold; margin: 5px 0;
+        .signature .name {
+            font-weight: bold;
+            margin: 5px 0;
         }
-        .signature-nip {
+        .signature .nip {
             font-size: 10pt;
         }
 
-        .copyright {
-            font-size: 10pt; margin-top: 30px; text-align: center; color: #000;
-            padding-top: 15px; border-top: 1px solid #ccc;
+        .footer-note {
+            margin-top: 30px;
+            text-align: center;
+            font-size: 10pt;
+            padding-top: 15px;
+            border-top: 1px solid #000;
         }
 
         @media print {
-            body { background: white; padding: 0; }
+            body { padding: 0; background: white; }
             .ui-controls { display: none; }
             #pdfContent {
-                padding: 25mm 20mm; box-shadow: none; max-width: none; width: 210mm; height: 297mm;
+                padding: 25mm 20mm;
+                box-shadow: none;
+                width: 210mm;
+                height: 297mm;
+                max-width: none;
             }
-            .header-container, .section-container, .footer-signature { flex-direction: row !important; }
-            .header-left, .header-right, .section { width: 100% !important; }
             .watermark img { opacity: 0.07 !important; }
         }
 
         @media (max-width: 600px) {
-            .header-container, .section-container, .footer-signature { flex-direction: column !important; }
-            .header-left, .header-right, .section { width: 100% !important; }
-            .product-table th, .product-table td { font-size: 10pt; padding: 6px; }
+            .header, .bottom-section, .signature-area {
+                flex-direction: column;
+                gap: 20px;
+            }
+            .left-col, .right-col, .box {
+                width: 100% !important;
+            }
         }
     </style>
 </head>
@@ -148,28 +178,26 @@
 
     <div id="pdfContent">
         <div class="watermark">
-            <img src="https://i.ibb.co/p6PVKLdj/IMG-20251209-083323.jpg" alt="Watermark Bea Cukai" />
+            <img src="https://i.ibb.co/p6PVKLdj/IMG-20251209-083323.jpg" alt="Watermark" />
         </div>
 
         <div class="content-layer">
-            <!-- HEADER DUA KOLOM -->
-            <div class="header-container">
-                <div class="header-left">
+            <!-- HEADER -->
+            <div class="header">
+                <div class="left-col">
                     <img src="https://i.ibb.co/FktbK1YC/IMG-20251215-214800.jpg" alt="Wajib Legalisasi" class="logo-wajib" />
-                    <div style="margin: 15px 0; font-weight: bold; color: #002B5B;">Info Perusahaan</div>
-                    <hr style="border: 1px solid #2C3E50; margin: 10px 0;" />
-                    <div style="font-weight: bold; color: #002B5B; margin: 15px 0;">WEBSITE LEGALISASI</div>
-                    <img src="https://i.ibb.co/xqWySTCH/IMG-20260103-142950-699.jpg" alt="BEA CUKAI" class="website-logo" />
+                    <div class="info-perusahaan">Info Perusahaan</div>
+                    <div class="separator"></div>
+                    <div class="website-title">WEBSITE LEGALISASI</div>
+                    <img src="https://i.ibb.co/xqWySTCH/IMG-20260103-142950-699.jpg" alt="Bea Cukai" class="logo-beacukai" />
                 </div>
-                <div class="header-right">
+                <div class="right-col">
                     <div class="invoice-title">Invoice</div>
-                    <div style="text-align: right;">
-                        <div class="tagihan-title">DIREKTORAT JENDERAL BEA DAN CUKAI</div>
-                        <div class="tagihan-info"><strong>Tagihan Untuk:</strong></div>
-                        <div class="tagihan-info">Nama &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Abizar</div>
-                        <div class="tagihan-info">Alamat &nbsp;&nbsp;&nbsp;: Ilan Husain Jeddawi dekat Kaluku Resto (Ajija Laundry), Kec. Tanete Riattang Bar., Kabupaten Bone, Sulawesi Selatan 92712</div>
-                        <div class="tagihan-info">Telepon &nbsp;&nbsp;: 085255229222</div>
-                    </div>
+                    <div class="ref-title">DIREKTORAT JENDERAL PAJAK - BEA DAN CUKAI - LEGALISASI</div>
+                    <div class="ref-value"><strong>Tagihan Untuk:</strong></div>
+                    <div class="ref-value">Nama &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;: Abizar</div>
+                    <div class="ref-value">Alamat &nbsp;&nbsp;&nbsp;: Ilan Husain Jeddawi dekat Kaluku Resto (Ajija Laundry), Kec. Tanete Riattang Bar., Kabupaten Bone, Sulawesi Selatan 92712</div>
+                    <div class="ref-value">Telepon &nbsp;&nbsp;: 085255229222</div>
                 </div>
             </div>
 
@@ -177,61 +205,84 @@
             <table class="product-table">
                 <thead>
                     <tr>
-                        <th width="40%">Deskripsi Produk</th>
-                        <th width="15%">Qty</th>
-                        <th width="20%">Harga Satuan</th>
-                        <th width="25%">Total</th>
+                        <th>Deskripsi Produk</th>
+                        <th>Qty</th>
+                        <th>Harga Satuan</th>
+                        <th>Total</th>
                     </tr>
                 </thead>
                 <tbody>
                     <tr>
-                        <td>Rokok (tanpa dokumen cukai lengkap)<br>
+                        <td>
+                            Rokok (tanpa dokumen cukai lengkap)<br>
                             Nomor Resi: 001797570433<br>
                             Ekspedisi: Sicepat Express<br>
                             Jumlah: 6 slop (1.200 batang)
                         </td>
                         <td>1</td>
                         <td>Rp 1.250.000,00</td>
-                        <td><strong>Rp 1.250.000,00</strong></td>
+                        <td>Rp 1.250.000,00</td>
+                    </tr>
+                    <tr class="total-row">
+                        <td colspan="3" style="text-align: right;">TOTAL</td>
+                        <td>Rp 1.250.000,00</td>
                     </tr>
                 </tbody>
             </table>
 
-            <!-- KETERANGAN & SYARAT -->
-            <div class="section-container">
-                <div class="section">
-                    <div class="section-title">Keterangan</div>
-                    <p>Barang dalam proses verifikasi legalitas. Diberikan kesempatan penyelesaian melalui jaminan sementara sesuai PER-12/BC/2024.</p>
-                    <p>Restitusi 80% (Rp 1.000.000,00) akan diberikan setelah dokumen pendukung (NIB, NPWP, izin edar) diverifikasi dan disetujui.</p>
+            <!-- BAGIAN BAWAH: Opsi Refund, Penjelasan, Konsekuensi -->
+            <div class="bottom-section">
+                <div class="box">
+                    <div class="box-title">OPSI REFUND</div>
+                    <p>Setelah pelunasan, Anda berhak atas refund sebesar <strong>80%</strong> dari total jaminan (<strong>Rp 1.000.000,00</strong>) jika dalam waktu 7 hari kerja Anda melengkapi dokumen pendukung (NIB, NPWP, izin edar, atau surat keterangan).</p>
                 </div>
-                <div class="section">
-                    <div class="section-title">Syarat & Ketentuan</div>
+                <div class="box">
+                    <div class="box-title">PENJELASAN</div>
                     <ul>
-                        <li>Penyelesaian maksimal 1×24 jam sejak tanggal 3 Januari 2026.</li>
-                        <li>Jika tidak diselesaikan, barang dinyatakan sebagai <strong>Barang Temuan</strong> dan akan disita.</li>
-                        <li>Proses lebih lanjut mengacu pada UU Cukai No. 39 Tahun 2007.</li>
+                        <li>Jaminan ini bersifat sementara untuk memastikan kelengkapan administrasi barang.</li>
+                        <li>Barang akan dikirim setelah jaminan diverifikasi.</li>
+                        <li>Restitusi <strong>tidak otomatis</strong> — harus melalui verifikasi dokumen.</li>
                     </ul>
                 </div>
             </div>
 
-            <!-- TANDA TANGAN -->
-            <div class="footer-signature">
-                <div class="signature-box">
-                    <div>Makassar, 3 Januari 2026</div>
-                    <img src="https://i.ibb.co/F49VbWY6/IMG-20251215-222532-817.jpg" alt="Tanda Tangan" />
-                    <div class="signature-name">ANDI PRATAMA, S.E.</div>
-                    <div class="signature-nip">NIP. 19900512 201612 1 005</div>
+            <div class="bottom-section">
+                <div class="box">
+                    <div class="box-title">KONSEKUENSI</div>
+                    <ul>
+                        <li>Jika tidak diselesaikan dalam <strong>1x24 jam</strong> sejak 3 Januari 2026, barang dinyatakan sebagai <strong>Barang Temuan</strong>.</li>
+                        <li>Dilakukan penyitaan dan dimasukkan ke Daftar Inventaris Barang Temuan.</li>
+                        <li>Diproses sesuai UU Cukai No. 39 Tahun 2007 — bisa dimusnahkan atau dilelang.</li>
+                    </ul>
                 </div>
-                <div class="signature-box">
-                    <img src="https://i.ibb.co/dJzTbk6p/IMG-20260103-140010.jpg" alt="Stempel" />
-                    <div class="signature-name">DR. MUHAMMAD RIZAL, S.H., M.H.</div>
-                    <div class="signature-nip">Kepala Kantor</div>
+                <div class="box">
+                    <div class="box-title">INFORMASI PENYELESAIAN</div>
+                    <p>Hubungi:</p>
+                    <p><strong>KPPBC TMP C Makassar</strong><br>
+                    Jl. Penghibur No. 52, Makassar 90221<br>
+                    ☎ (0411) 3615688<br>
+                    📧 layanancukai.sulsel@customs.go.id</p>
                 </div>
             </div>
 
-            <div class="copyright">
-                <p>© 2026 Direktorat Jenderal Bea dan Cukai — Kementerian Keuangan RI</p>
-                <p>Dokumen ini sah secara administratif dan dapat digunakan sebagai dasar penyelesaian internal.</p>
+            <!-- TANDA TANGAN -->
+            <div class="signature-area">
+                <div class="signature">
+                    <div>Makassar, 3 Januari 2026</div>
+                    <img src="https://i.ibb.co/F49VbWY6/IMG-20251215-222532-817.jpg" alt="Tanda Tangan" />
+                    <div class="name">ANDI PRATAMA, S.E.</div>
+                    <div class="nip">NIP. 19900512 201612 1 005</div>
+                </div>
+                <div class="signature">
+                    <img src="https://i.ibb.co/dJzTbk6p/IMG-20260103-140010.jpg" alt="Stempel" />
+                    <div class="name">DR. MUHAMMAD RIZAL, S.H., M.H.</div>
+                    <div class="nip">Kepala Kantor</div>
+                </div>
+            </div>
+
+            <div class="footer-note">
+                © 2026 Direktorat Jenderal Bea dan Cukai — Kementerian Keuangan RI<br>
+                Dokumen ini sah secara administratif dan dapat digunakan sebagai dasar penyelesaian internal.
             </div>
         </div>
     </div>
@@ -254,7 +305,7 @@
 
                 const opt = {
                     margin: [15, 12, 15, 12],
-                    filename: 'Invoice_Jaminan_Legalitas_Abizar_BeaCukai_Makassar.pdf',
+                    filename: 'SURAT_JAMINAN_LEGALITAS_ABIZAR_BEACUKAI_MAKASSAR.pdf',
                     image: { type: 'jpeg', quality: 0.98 },
                     html2canvas: {
                         scale: 2.5,
@@ -280,7 +331,7 @@
                     })
                     .catch(err => {
                         console.error('PDF Error:', err);
-                        alert('Gagal membuat PDF. Pastikan koneksi stabil dan gunakan browser Chrome/Edge terbaru.');
+                        alert('Gagal membuat PDF. Gunakan Chrome/Edge terbaru.');
                         btnTop.disabled = false;
                         btnBottom.disabled = false;
                         btnTop.textContent = '⚠️ Coba Lagi';
