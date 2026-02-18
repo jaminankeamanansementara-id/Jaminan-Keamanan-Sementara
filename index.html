@@ -3,842 +3,1209 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Layanan Resmi Kepabeanan & Cukai | Legalisasi Dokumen</title>
-    <meta name="description" content="Portal resmi layanan legalisasi dokumen kepabeanan dan cukai.">
+    <title>CipherChat • Secure Social Network</title>
+    <meta name="description" content="Platform sosial terenkripsi end-to-end kelas internasional.">
     
+    <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@1,400;1,600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <!-- Icons (Phosphor Icons for modern look) -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
 
     <style>
-        /* --- CSS VARIABLES & RESET --- */
+        /* =========================================
+           1. CORE VARIABLES & RESET
+           ========================================= */
         :root {
-            /* Warna Resmi Pemerintahan (Nuansa Biru & Emas) */
-            --primary-dark: #0f2e5a; /* Deep Navy */
-            --primary: #1e427d;      /* Official Blue */
-            --secondary: #d4af37;    /* Metallic Gold */
-            --accent: #b91c1c;       /* Alert Red */
+            /* Colors - Dark Mode (Default) */
+            --bg-body: #0f172a;
+            --bg-surface: #1e293b;
+            --bg-surface-2: #334155;
+            --bg-glass: rgba(30, 41, 59, 0.7);
             
-            --bg-light: #f8fafc;
-            --bg-white: #ffffff;
-            --text-main: #1e293b;
-            --text-light: #64748b;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
             
-            --shadow-sm: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
-            --shadow-md: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-            --shadow-lg: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+            --primary: #6366f1;
+            --primary-hover: #4f46e5;
+            --primary-glow: rgba(99, 102, 241, 0.4);
             
-            --radius: 8px;
+            --success: #10b981;
+            --danger: #ef4444;
+            --warning: #f59e0b;
+            
+            --border: rgba(255, 255, 255, 0.1);
+            --shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.5);
+            
+            --radius-sm: 8px;
+            --radius-md: 12px;
+            --radius-lg: 16px;
+            --radius-full: 9999px;
+            
             --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            --font-main: 'Inter', sans-serif;
+            --font-mono: 'JetBrains Mono', monospace;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            outline: none;
+        [data-theme="light"] {
+            --bg-body: #f8fafc;
+            --bg-surface: #ffffff;
+            --bg-surface-2: #f1f5f9;
+            --bg-glass: rgba(255, 255, 255, 0.8);
+            
+            --text-primary: #0f172a;
+            --text-secondary: #475569;
+            --text-muted: #94a3b8;
+            
+            --border: rgba(0, 0, 0, 0.1);
+            --shadow: 0 10px 40px -10px rgba(0, 0, 0, 0.1);
         }
 
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg-light);
-            color: var(--text-main);
-            line-height: 1.6;
-            overflow-x: hidden;
-        }
-
-        a { text-decoration: none; color: inherit; }
-        ul { list-style: none; }
-
-        /* --- UTILITY CLASSES --- */
-        .container {
-            width: 100%;
-            max-width: 1280px;
-            margin: 0 auto;
-            padding: 0 24px;
-        }
-
-        .section-padding { padding: 100px 0; }
+        * { margin: 0; padding: 0; box-sizing: border-box; outline: none; }
         
-        .badge-official {
+        body {
+            font-family: var(--font-main);
+            background: var(--bg-body);
+            color: var(--text-primary);
+            line-height: 1.6;
+            transition: var(--transition);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        /* Scrollbar */
+        ::-webkit-scrollbar { width: 8px; }
+        ::-webkit-scrollbar-track { background: transparent; }
+        ::-webkit-scrollbar-thumb { background: var(--bg-surface-2); border-radius: 4px; }
+        ::-webkit-scrollbar-thumb:hover { background: var(--text-muted); }
+
+        /* Utilities */
+        .container { max-width: 1280px; margin: 0 auto; padding: 0 1.5rem; }
+        .flex { display: flex; }
+        .flex-col { flex-direction: column; }
+        .items-center { align-items: center; }
+        .justify-between { justify-content: space-between; }
+        .justify-center { justify-content: center; }
+        .gap-2 { gap: 0.5rem; }
+        .gap-4 { gap: 1rem; }
+        .hidden { display: none !important; }
+        .text-primary { color: var(--text-primary); }
+        .text-secondary { color: var(--text-secondary); }
+        .text-sm { font-size: 0.875rem; }
+        .font-bold { font-weight: 700; }
+        .w-full { width: 100%; }
+        
+        /* Buttons */
+        .btn {
             display: inline-flex;
             align-items: center;
-            gap: 8px;
-            background: rgba(212, 175, 55, 0.1);
-            color: #856404;
-            border: 1px solid var(--secondary);
-            padding: 6px 12px;
-            border-radius: 50px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            margin-bottom: 1rem;
-        }
-
-        /* --- TOP BAR --- */
-        .top-bar {
-            background-color: var(--primary-dark);
-            color: rgba(255,255,255,0.9);
-            font-size: 0.85rem;
-            padding: 10px 0;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-        }
-        
-        .top-bar .container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .top-info span { margin-right: 20px; display: inline-flex; align-items: center; gap: 6px; }
-
-        /* --- HEADER & NAV --- */
-        header {
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            background: transparent;
-            transition: var(--transition);
-            padding: 20px 0;
-        }
-
-        header.scrolled {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            box-shadow: var(--shadow-md);
-            padding: 15px 0;
-        }
-
-        header.scrolled nav a { color: var(--primary-dark); }
-        header.scrolled .logo-text h1 { color: var(--primary-dark); }
-        header.scrolled .logo-text p { color: var(--text-light); }
-        header.scrolled .menu-btn div { background-color: var(--primary-dark); }
-
-        .header-content {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo-wrapper {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .logo-img {
-            width: 50px;
-            height: 50px;
-            background: var(--secondary); /* Placeholder for Emblem */
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
             justify-content: center;
-            font-size: 24px;
-            color: white;
-            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-        }
-
-        .logo-text h1 {
-            font-size: 1.25rem;
-            font-weight: 800;
-            color: white;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            line-height: 1.2;
-            transition: var(--transition);
-        }
-
-        .logo-text p {
-            font-size: 0.8rem;
-            color: rgba(255,255,255,0.8);
-            font-family: 'Lora', serif;
-            font-style: italic;
-            transition: var(--transition);
-        }
-
-        nav ul {
-            display: flex;
-            gap: 32px;
-        }
-
-        nav a {
-            color: white;
-            font-weight: 500;
+            gap: 0.5rem;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius-md);
+            font-weight: 600;
             font-size: 0.95rem;
-            position: relative;
-            padding: 5px 0;
-            transition: var(--transition);
-        }
-
-        nav a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: 0;
-            left: 0;
-            background-color: var(--secondary);
-            transition: width 0.3s;
-        }
-
-        nav a:hover::after { width: 100%; }
-
-        .mobile-menu-btn {
-            display: none;
             cursor: pointer;
-            z-index: 1001;
-        }
-
-        /* --- HERO SECTION --- */
-        .hero {
-            position: relative;
-            height: 100vh;
-            min-height: 600px;
-            background: linear-gradient(135deg, rgba(15, 46, 90, 0.9), rgba(30, 66, 125, 0.8)), url('https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            display: flex;
-            align-items: center;
-            margin-top: -125px; /* Pull up behind header */
-            color: white;
-            text-align: center;
-        }
-
-        .hero-content {
-            max-width: 900px;
-            margin: 0 auto;
-            padding-top: 80px;
-            animation: fadeInUp 1s ease-out;
-        }
-
-        .hero h2 {
-            font-size: 3.5rem;
-            font-weight: 800;
-            margin-bottom: 24px;
-            line-height: 1.2;
-        }
-
-        .hero p {
-            font-size: 1.25rem;
-            margin-bottom: 40px;
-            color: rgba(255,255,255,0.9);
-            font-weight: 300;
-            max-width: 700px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .btn {
-            display: inline-block;
-            padding: 14px 32px;
-            border-radius: 50px;
-            font-weight: 600;
-            font-size: 1rem;
             transition: var(--transition);
-            cursor: pointer;
             border: none;
-        }
-
-        .btn-primary {
-            background: var(--secondary);
-            color: var(--primary-dark);
-            box-shadow: 0 4px 15px rgba(212, 175, 55, 0.4);
-        }
-
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            background: #e5bd3c;
-            box-shadow: 0 6px 20px rgba(212, 175, 55, 0.6);
-        }
-
-        .btn-outline {
-            background: transparent;
-            border: 2px solid rgba(255,255,255,0.3);
-            color: white;
-            margin-left: 15px;
-        }
-
-        .btn-outline:hover {
-            border-color: white;
-            background: rgba(255,255,255,0.1);
-        }
-
-        /* --- SECTIONS TITLE --- */
-        .section-header {
-            text-align: center;
-            margin-bottom: 60px;
-        }
-
-        .section-header h2 {
-            font-size: 2.5rem;
-            color: var(--primary-dark);
-            margin-bottom: 16px;
-            font-weight: 700;
-        }
-
-        .section-header .divider {
-            width: 80px;
-            height: 4px;
-            background: var(--secondary);
-            margin: 0 auto 20px;
-            border-radius: 2px;
-        }
-
-        .section-header p {
-            color: var(--text-light);
-            max-width: 600px;
-            margin: 0 auto;
-        }
-
-        /* --- CARDS (Services) --- */
-        .grid-3 {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 30px;
-        }
-
-        .card {
-            background: white;
-            border-radius: var(--radius);
-            padding: 40px 30px;
-            box-shadow: var(--shadow-md);
-            transition: var(--transition);
-            border: 1px solid rgba(0,0,0,0.03);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: var(--shadow-lg);
-            border-color: rgba(212, 175, 55, 0.3);
-        }
-
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 4px;
-            height: 100%;
-            background: var(--secondary);
-            opacity: 0;
-            transition: var(--transition);
-        }
-
-        .card:hover::before { opacity: 1; }
-
-        .icon-box {
-            width: 60px;
-            height: 60px;
-            background: rgba(30, 66, 125, 0.1);
-            color: var(--primary);
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1.8rem;
-            margin-bottom: 25px;
-        }
-
-        .card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-            color: var(--primary-dark);
-        }
-
-        .card p { color: var(--text-light); font-size: 0.95rem; }
-
-        /* --- REQUIREMENTS --- */
-        .req-section {
-            background-color: white;
-            position: relative;
+            text-decoration: none;
         }
         
-        .req-section::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 100%;
-            background-image: radial-gradient(var(--secondary) 1px, transparent 1px);
-            background-size: 30px 30px;
-            opacity: 0.05;
-        }
-
-        .list-check li {
-            position: relative;
-            padding-left: 35px;
-            margin-bottom: 15px;
-            color: var(--text-main);
-        }
-
-        .list-check li::before {
-            content: '✓';
-            position: absolute;
-            left: 0;
-            top: 0;
-            width: 24px;
-            height: 24px;
+        .btn-primary {
             background: var(--primary);
             color: white;
-            border-radius: 50%;
+            box-shadow: 0 4px 14px var(--primary-glow);
+        }
+        .btn-primary:hover { background: var(--primary-hover); transform: translateY(-2px); }
+        
+        .btn-outline {
+            background: transparent;
+            border: 1px solid var(--border);
+            color: var(--text-primary);
+        }
+        .btn-outline:hover { border-color: var(--primary); color: var(--primary); }
+        
+        .btn-ghost {
+            background: transparent;
+            color: var(--text-secondary);
+        }
+        .btn-ghost:hover { background: var(--bg-surface-2); color: var(--text-primary); }
+
+        .btn-icon {
+            width: 40px; height: 40px;
+            padding: 0;
+            border-radius: var(--radius-md);
+            background: var(--bg-surface-2);
+            color: var(--text-primary);
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.25rem;
+        }
+        .btn-icon:hover { background: var(--primary); color: white; }
+
+        /* Inputs */
+        .input-group { position: relative; margin-bottom: 1rem; }
+        .input-field {
+            width: 100%;
+            padding: 0.875rem 1rem;
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-md);
+            color: var(--text-primary);
+            font-family: var(--font-main);
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        .input-field:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.2);
+        }
+        .input-label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-size: 0.875rem;
+            font-weight: 500;
+            color: var(--text-secondary);
+        }
+
+        /* =========================================
+           2. LANDING PAGE STYLES
+           ========================================= */
+        #landing-page {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            z-index: 100;
+            padding: 1rem 0;
+            background: var(--bg-glass);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--border);
+        }
+        .nav-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-primary);
+            text-decoration: none;
+        }
+        .logo i { color: var(--primary); font-size: 1.75rem; }
+
+        /* Hero */
+        .hero-section {
+            padding: 10rem 0 6rem;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        .hero-bg {
+            position: absolute;
+            top: -50%; left: -50%;
+            width: 200%; height: 200%;
+            background: radial-gradient(circle at 50% 50%, rgba(99, 102, 241, 0.15) 0%, transparent 50%);
+            z-index: -1;
+            animation: pulseBg 10s infinite alternate;
+        }
+        @keyframes pulseBg { 0% { transform: scale(1); } 100% { transform: scale(1.1); } }
+
+        .hero-title {
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 800;
+            line-height: 1.1;
+            margin-bottom: 1.5rem;
+            background: linear-gradient(135deg, var(--text-primary) 0%, var(--primary) 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            max-width: 600px;
+            margin: 0 auto 2.5rem;
+        }
+
+        /* Features Grid */
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+        .feature-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            padding: 2rem;
+            border-radius: var(--radius-lg);
+            transition: var(--transition);
+        }
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary);
+            box-shadow: var(--shadow);
+        }
+        .feature-icon {
+            width: 50px; height: 50px;
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--primary);
+            border-radius: 12px;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        /* =========================================
+           3. AUTH MODAL STYLES
+           ========================================= */
+        .modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(5px);
+            z-index: 1000;
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 0.8rem;
-        }
-
-        /* --- CONTACT --- */
-        .contact-wrapper {
-            background: white;
-            border-radius: 20px;
-            box-shadow: var(--shadow-lg);
-            overflow: hidden;
-            display: flex;
-            flex-wrap: wrap;
-        }
-
-        .contact-info {
-            flex: 1;
-            background: var(--primary-dark);
-            color: white;
-            padding: 60px;
-            position: relative;
-        }
-
-        .contact-info::after {
-            content: '';
-            position: absolute;
-            bottom: 0; right: 0;
-            width: 150px;
-            height: 150px;
-            background: rgba(255,255,255,0.05);
-            border-radius: 100% 0 0 0;
-        }
-
-        .contact-item {
-            display: flex;
-            align-items: flex-start;
-            margin-bottom: 30px;
-        }
-
-        .contact-item .icon {
-            font-size: 1.5rem;
-            margin-right: 20px;
-            color: var(--secondary);
-        }
-
-        .contact-form {
-            flex: 1.5;
-            padding: 60px;
-            min-width: 350px;
-        }
-
-        .form-group { margin-bottom: 24px; }
-        
-        .form-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-            font-size: 0.9rem;
-            color: var(--text-main);
-        }
-
-        .form-control {
-            width: 100%;
-            padding: 12px 16px;
-            border: 1px solid #e2e8f0;
-            border-radius: 6px;
-            font-family: inherit;
+            opacity: 0;
+            visibility: hidden;
             transition: var(--transition);
         }
-
-        .form-control:focus {
-            border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(30, 66, 125, 0.1);
-        }
-
-        .btn-block { width: 100%; text-align: center; }
-
-        /* --- FOOTER --- */
-        footer {
-            background: #111827;
-            color: #9ca3af;
-            padding: 80px 0 30px;
-            font-size: 0.9rem;
-        }
-
-        .footer-grid {
-            display: grid;
-            grid-template-columns: 2fr 1fr 1fr 1fr;
-            gap: 40px;
-            margin-bottom: 60px;
-            border-bottom: 1px solid rgba(255,255,255,0.1);
-            padding-bottom: 40px;
-        }
-
-        .footer-brand h2 { color: white; margin-bottom: 15px; }
-        .footer-links h4 { color: white; margin-bottom: 20px; font-size: 1rem; }
+        .modal-overlay.active { opacity: 1; visibility: visible; }
         
-        .footer-links ul li { margin-bottom: 12px; }
-        .footer-links a:hover { color: var(--secondary); }
-
-        .copyright { text-align: center; font-size: 0.85rem; }
-
-        /* --- ANIMATION --- */
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+        .auth-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            padding: 2.5rem;
+            border-radius: var(--radius-lg);
+            width: 100%;
+            max-width: 420px;
+            transform: translateY(20px);
+            transition: var(--transition);
+            position: relative;
+        }
+        .modal-overlay.active .auth-card { transform: translateY(0); }
+        
+        .auth-header { text-align: center; margin-bottom: 2rem; }
+        .auth-title { font-size: 1.75rem; font-weight: 700; margin-bottom: 0.5rem; }
+        .auth-subtitle { color: var(--text-secondary); font-size: 0.95rem; }
+        
+        .auth-toggle {
+            display: flex;
+            background: var(--bg-surface-2);
+            padding: 4px;
+            border-radius: var(--radius-md);
+            margin-bottom: 1.5rem;
+        }
+        .toggle-btn {
+            flex: 1;
+            padding: 0.5rem;
+            text-align: center;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 0.9rem;
+            font-weight: 500;
+            transition: var(--transition);
+            color: var(--text-secondary);
+        }
+        .toggle-btn.active {
+            background: var(--bg-surface);
+            color: var(--text-primary);
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
         }
 
-        .reveal {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease-out;
+        .loading-spinner {
+            width: 20px; height: 20px;
+            border: 2px solid rgba(255,255,255,0.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s linear infinite;
+        }
+        @keyframes spin { to { transform: rotate(360deg); } }
+
+        /* =========================================
+           4. DASHBOARD APP STYLES
+           ========================================= */
+        #app-dashboard {
+            display: none; /* Hidden by default */
+            min-height: 100vh;
+            background: var(--bg-body);
+        }
+        
+        .app-layout {
+            display: grid;
+            grid-template-columns: 280px 1fr 300px;
+            gap: 2rem;
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 1.5rem;
+            height: 100vh;
+            overflow: hidden;
         }
 
-        .reveal.active {
-            opacity: 1;
-            transform: translateY(0);
+        /* Sidebar Left */
+        .sidebar-left {
+            display: flex;
+            flex-direction: column;
+            padding-right: 1rem;
+            border-right: 1px solid var(--border);
         }
-
-        /* --- RESPONSIVE --- */
-        @media (max-width: 992px) {
-            .hero h2 { font-size: 2.8rem; }
-            .contact-wrapper { flex-direction: column; }
-            .footer-grid { grid-template-columns: 1fr 1fr; }
+        .nav-menu {
+            list-style: none;
+            margin-top: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
         }
+        .nav-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 0.875rem 1rem;
+            border-radius: var(--radius-md);
+            color: var(--text-secondary);
+            text-decoration: none;
+            font-weight: 500;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+        .nav-item:hover, .nav-item.active {
+            background: rgba(99, 102, 241, 0.1);
+            color: var(--primary);
+        }
+        .nav-item i { font-size: 1.25rem; }
 
+        /* Main Feed */
+        .main-feed {
+            overflow-y: auto;
+            padding-right: 1rem;
+            position: relative;
+        }
+        .feed-header {
+            position: sticky;
+            top: 0;
+            background: var(--bg-body);
+            padding: 1rem 0;
+            z-index: 10;
+            border-bottom: 1px solid var(--border);
+            margin-bottom: 1.5rem;
+        }
+        
+        /* Create Post */
+        .create-post {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
+        }
+        .post-input {
+            width: 100%;
+            background: transparent;
+            border: none;
+            color: var(--text-primary);
+            font-size: 1.1rem;
+            resize: none;
+            min-height: 80px;
+            margin-bottom: 1rem;
+            font-family: var(--font-main);
+        }
+        .post-actions {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-top: 1px solid var(--border);
+            padding-top: 1rem;
+        }
+        .media-btns { display: flex; gap: 0.5rem; }
+        .media-btn {
+            width: 36px; height: 36px;
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            color: var(--primary);
+            background: rgba(99, 102, 241, 0.1);
+            cursor: pointer;
+            transition: var(--transition);
+        }
+        .media-btn:hover { background: rgba(99, 102, 241, 0.2); }
+
+        /* Post Card */
+        .post-card {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            animation: slideUp 0.4s ease;
+        }
+        @keyframes slideUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+        
+        .post-header {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        .avatar {
+            width: 48px; height: 48px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), #8b5cf6);
+            display: flex; align-items: center; justify-content: center;
+            color: white; font-weight: 700; font-size: 1.25rem;
+        }
+        .user-info h4 { font-size: 1rem; font-weight: 600; }
+        .user-info span { font-size: 0.85rem; color: var(--text-muted); }
+        
+        .post-content {
+            font-size: 1rem;
+            color: var(--text-primary);
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+        .post-image {
+            width: 100%;
+            border-radius: var(--radius-md);
+            margin-bottom: 1rem;
+            border: 1px solid var(--border);
+        }
+        
+        .post-stats {
+            display: flex;
+            justify-content: space-between;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            padding-bottom: 1rem;
+            border-bottom: 1px solid var(--border);
+        }
+        
+        .post-actions-bar {
+            display: flex;
+            justify-content: space-around;
+        }
+        .action-btn {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--text-secondary);
+            background: none;
+            border: none;
+            cursor: pointer;
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius-md);
+            transition: var(--transition);
+            font-size: 0.95rem;
+        }
+        .action-btn:hover { background: var(--bg-surface-2); color: var(--primary); }
+        .action-btn.liked { color: var(--danger); }
+        .action-btn.liked i { fill: var(--danger); }
+
+        /* Sidebar Right */
+        .sidebar-right {
+            padding-left: 1rem;
+            border-left: 1px solid var(--border);
+        }
+        .widget {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            border-radius: var(--radius-lg);
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+        .widget-title {
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin-bottom: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .trend-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 0;
+            border-bottom: 1px solid var(--border);
+            cursor: pointer;
+        }
+        .trend-item:last-child { border-bottom: none; }
+        .trend-meta { font-size: 0.8rem; color: var(--text-muted); }
+        .trend-name { font-weight: 600; font-size: 0.95rem; }
+
+        /* Loading Skeleton */
+        .skeleton {
+            background: linear-gradient(90deg, var(--bg-surface) 25%, var(--bg-surface-2) 50%, var(--bg-surface) 75%);
+            background-size: 200% 100%;
+            animation: loading 1.5s infinite;
+            border-radius: 4px;
+        }
+        @keyframes loading { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+        .sk-text { height: 16px; margin-bottom: 8px; width: 100%; }
+        .sk-avatar { width: 48px; height: 48px; border-radius: 50%; margin-bottom: 1rem; }
+        .sk-title { height: 20px; width: 60%; margin-bottom: 1rem; }
+
+        /* Toast Notification */
+        .toast-container {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 2000;
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+        .toast {
+            background: var(--bg-surface);
+            border: 1px solid var(--border);
+            padding: 1rem 1.5rem;
+            border-radius: var(--radius-md);
+            box-shadow: var(--shadow);
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            min-width: 300px;
+            animation: slideInRight 0.3s ease;
+            border-left: 4px solid var(--primary);
+        }
+        .toast.success { border-left-color: var(--success); }
+        .toast.error { border-left-color: var(--danger); }
+        @keyframes slideInRight { from { transform: translateX(100%); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .app-layout { grid-template-columns: 80px 1fr; }
+            .sidebar-right { display: none; }
+            .nav-item span { display: none; }
+            .nav-item { justify-content: center; }
+            .logo span { display: none; }
+        }
         @media (max-width: 768px) {
-            .top-bar { display: none; }
-            
-            .header-content {
-                padding: 0 10px;
+            .app-layout { grid-template-columns: 1fr; padding: 0; }
+            .sidebar-left { 
+                position: fixed; bottom: 0; left: 0; right: 0; 
+                height: 60px; flex-direction: row; 
+                border-right: none; border-top: 1px solid var(--border);
+                background: var(--bg-surface); padding: 0;
+                z-index: 100;
             }
-
-            .mobile-menu-btn {
-                display: block;
-                color: white;
-                font-size: 1.5rem;
-            }
-
-            header.scrolled .mobile-menu-btn { color: var(--primary-dark); }
-
-            nav {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                width: 80%;
-                height: 100vh;
-                background: white;
-                box-shadow: -5px 0 15px rgba(0,0,0,0.1);
-                padding: 80px 30px;
-                transition: 0.4s ease;
-            }
-
-            nav.active { right: 0; }
-
-            nav ul {
-                flex-direction: column;
-                gap: 20px;
-            }
-
-            nav a {
-                color: var(--text-main);
-                font-size: 1.2rem;
-            }
-
-            .hero h2 { font-size: 2.2rem; }
-            .hero { margin-top: 0; padding-top: 80px; }
-            
-            .footer-grid { grid-template-columns: 1fr; }
+            .nav-menu { flex-direction: row; justify-content: space-around; width: 100%; margin: 0; }
+            .nav-item { padding: 0.5rem; }
+            .main-feed { padding-bottom: 80px; }
+            .hero-title { font-size: 2.5rem; }
         }
     </style>
 </head>
 <body>
 
-    <div class="top-bar">
-        <div class="container">
-            <div class="top-info">
-                <span>📍 Deli Serdang, Sumatera Utara</span>
-                <span>📞 0812-6328-5947</span>
+    <!-- ===========================
+         1. LANDING PAGE VIEW
+         =========================== -->
+    <div id="landing-page">
+        <!-- Navbar -->
+        <nav class="navbar">
+            <div class="container nav-content">
+                <a href="#" class="logo">
+                    <i class="ph ph-shield-check"></i>
+                    <span>CipherChat</span>
+                </a>
+                <div class="flex items-center gap-4">
+                    <button class="btn-icon" id="themeToggle" title="Toggle Theme">
+                        <i class="ph ph-moon"></i>
+                    </button>
+                    <button class="btn btn-outline" onclick="app.openAuth('login')">Masuk</button>
+                    <button class="btn btn-primary" onclick="app.openAuth('register')">Daftar Gratis</button>
+                </div>
             </div>
-            <div class="top-info">
-                <span>🕒 Senin - Jumat: 08.00 - 16.00 WIB</span>
+        </nav>
+
+        <!-- Hero -->
+        <section class="hero-section">
+            <div class="hero-bg"></div>
+            <div class="container">
+                <div class="badge" style="display:inline-block; padding:0.5rem 1rem; background:rgba(99,102,241,0.1); color:var(--primary); border-radius:99px; font-size:0.9rem; font-weight:600; margin-bottom:1.5rem; border:1px solid rgba(99,102,241,0.2);">
+                    🔐 Terenkripsi End-to-End • Open Source
+                </div>
+                <h1 class="hero-title">Privasi Tanpa Kompromi.<br>Terhubung Dengan Aman.</h1>
+                <p class="hero-subtitle">
+                    Platform sosial terenkripsi kelas internasional. Pesan, panggilan, dan data Anda dilindungi oleh kriptografi tingkat militer. Tidak ada iklan, tidak ada pelacakan.
+                </p>
+                <div class="flex justify-center gap-4">
+                    <button class="btn btn-primary" style="padding: 1rem 2rem; font-size: 1.1rem;" onclick="app.openAuth('register')">
+                        <i class="ph ph-rocket-launch"></i> Mulai Sekarang
+                    </button>
+                    <button class="btn btn-outline" style="padding: 1rem 2rem; font-size: 1.1rem;">
+                        <i class="ph ph-play-circle"></i> Lihat Demo
+                    </button>
+                </div>
+
+                <!-- Features -->
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="ph ph-lock-key"></i></div>
+                        <h3>Enkripsi AES-256</h3>
+                        <p class="text-secondary">Setiap bit data dienkripsi sebelum meninggalkan perangkat Anda. Hanya Anda yang memiliki kuncinya.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="ph ph-eye-slash"></i></div>
+                        <h3>Zero-Knowledge</h3>
+                        <p class="text-secondary">Kami tidak menyimpan metadata, log chat, atau lokasi Anda. Server kami buta terhadap aktivitas Anda.</p>
+                    </div>
+                    <div class="feature-card">
+                        <div class="feature-icon"><i class="ph ph-globe-hemisphere-west"></i></div>
+                        <h3>Jaringan Terdesentralisasi</h3>
+                        <p class="text-secondary">Didukung oleh node global yang terdistribusi untuk memastikan uptime 99.99% dan resistensi sensor.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <footer style="text-align:center; padding: 3rem 0; border-top: 1px solid var(--border); margin-top: 4rem; color: var(--text-muted);">
+            <p>&copy; 2026 CipherChat Labs. All rights reserved.</p>
+            <div class="flex justify-center gap-4" style="margin-top: 1rem;">
+                <a href="#" class="text-secondary">Privacy Policy</a>
+                <a href="#" class="text-secondary">Terms of Service</a>
+                <a href="#" class="text-secondary">Security Audit</a>
+            </div>
+        </footer>
+    </div>
+
+    <!-- ===========================
+         2. AUTH MODAL
+         =========================== -->
+    <div class="modal-overlay" id="authModal">
+        <div class="auth-card">
+            <button class="btn-icon" style="position:absolute; top:1rem; right:1rem; width:32px; height:32px; font-size:1rem;" onclick="app.closeAuth()">
+                <i class="ph ph-x"></i>
+            </button>
+            
+            <div class="auth-header">
+                <div class="logo justify-center" style="margin-bottom: 1rem;">
+                    <i class="ph ph-shield-check"></i> CipherChat
+                </div>
+                <h2 class="auth-title" id="authTitle">Selamat Datang</h2>
+                <p class="auth-subtitle" id="authSubtitle">Masuk untuk melanjutkan ke dashboard aman Anda.</p>
+            </div>
+
+            <div class="auth-toggle">
+                <div class="toggle-btn active" id="tabLogin" onclick="app.switchAuthTab('login')">Masuk</div>
+                <div class="toggle-btn" id="tabRegister" onclick="app.switchAuthTab('register')">Daftar</div>
+            </div>
+
+            <form id="authForm" onsubmit="app.handleAuth(event)">
+                <div class="input-group" id="nameGroup" style="display:none;">
+                    <label class="input-label">Nama Lengkap</label>
+                    <input type="text" class="input-field" id="regName" placeholder="John Doe">
+                </div>
+                <div class="input-group">
+                    <label class="input-label">Email</label>
+                    <input type="email" class="input-field" id="authEmail" placeholder="nama@contoh.com" required>
+                </div>
+                <div class="input-group">
+                    <label class="input-label">Kata Sandi</label>
+                    <input type="password" class="input-field" id="authPass" placeholder="••••••••" required>
+                </div>
+                
+                <button type="submit" class="btn btn-primary w-full" id="authBtn">
+                    <span>Masuk Sekarang</span>
+                </button>
+            </form>
+
+            <div style="text-align:center; margin-top: 1.5rem; font-size: 0.9rem; color: var(--text-muted);">
+                Dengan melanjutkan, Anda menyetujui <a href="#" style="color:var(--primary);">Syarat Layanan</a> kami.
             </div>
         </div>
     </div>
 
-    <header id="header">
-        <div class="container header-content">
-            <div class="logo-wrapper">
-                <div class="logo-img">🏛️</div>
-                <div class="logo-text">
-                    <h1>Bea Cukai</h1>
-                    <p>Makin Baik Mengawasi & Melayani</p>
-                </div>
-            </div>
-            
-            <div class="mobile-menu-btn" onclick="toggleMenu()">☰</div>
-
-            <nav id="nav-menu">
-                <ul>
-                    <li><a href="#beranda" onclick="toggleMenu()">Beranda</a></li>
-                    <li><a href="#layanan" onclick="toggleMenu()">Layanan</a></li>
-                    <li><a href="#syarat" onclick="toggleMenu()">Persyaratan</a></li>
-                    <li><a href="#kontak" onclick="toggleMenu()">Hubungi Kami</a></li>
+    <!-- ===========================
+         3. DASHBOARD APP VIEW
+         =========================== -->
+    <div id="app-dashboard">
+        <div class="app-layout">
+            <!-- Left Sidebar -->
+            <aside class="sidebar-left">
+                <a href="#" class="logo" style="padding: 1rem 0;">
+                    <i class="ph ph-shield-check"></i>
+                    <span>CipherChat</span>
+                </a>
+                
+                <ul class="nav-menu">
+                    <li class="nav-item active">
+                        <i class="ph ph-house"></i>
+                        <span>Beranda</span>
+                    </li>
+                    <li class="nav-item">
+                        <i class="ph ph-hash"></i>
+                        <span>Jelajahi</span>
+                    </li>
+                    <li class="nav-item">
+                        <i class="ph ph-bell"></i>
+                        <span>Notifikasi</span>
+                        <span style="margin-left:auto; background:var(--danger); color:white; font-size:0.7rem; padding:2px 6px; border-radius:99px;">3</span>
+                    </li>
+                    <li class="nav-item">
+                        <i class="ph ph-envelope-simple"></i>
+                        <span>Pesan</span>
+                    </li>
+                    <li class="nav-item">
+                        <i class="ph ph-bookmark"></i>
+                        <span>Disimpan</span>
+                    </li>
+                    <li class="nav-item" style="margin-top: auto;" onclick="app.logout()">
+                        <i class="ph ph-sign-out"></i>
+                        <span>Keluar</span>
+                    </li>
                 </ul>
-            </nav>
+
+                <button class="btn btn-primary w-full" style="margin-top: 2rem;" onclick="document.getElementById('postInput').focus()">
+                    <i class="ph ph-plus-circle"></i> Posting
+                </button>
+            </aside>
+
+            <!-- Main Feed -->
+            <main class="main-feed" id="feedContainer">
+                <div class="feed-header">
+                    <h2 style="font-size: 1.5rem; font-weight: 700;">Beranda</h2>
+                    <p class="text-secondary text-sm">Update terbaru dari jaringan terenkripsi Anda.</p>
+                </div>
+
+                <!-- Create Post Widget -->
+                <div class="create-post">
+                    <div class="flex gap-4" style="margin-bottom: 1rem;">
+                        <div class="avatar" id="currentUserAvatar">U</div>
+                        <textarea class="post-input" id="postInput" placeholder="Apa yang sedang Anda pikirkan? (Terenskripsi)"></textarea>
+                    </div>
+                    <div class="post-actions">
+                        <div class="media-btns">
+                            <div class="media-btn"><i class="ph ph-image"></i></div>
+                            <div class="media-btn"><i class="ph ph-video-camera"></i></div>
+                            <div class="media-btn"><i class="ph ph-smiley"></i></div>
+                        </div>
+                        <button class="btn btn-primary" id="btnPost" onclick="app.createPost()">
+                            Posting
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Posts will be injected here via JS -->
+                <div id="postsList"></div>
+            </main>
+
+            <!-- Right Sidebar -->
+            <aside class="sidebar-right">
+                <div class="widget">
+                    <div class="widget-title">
+                        <span>Trending 🔥</span>
+                        <i class="ph ph-dots-three" style="cursor:pointer;"></i>
+                    </div>
+                    <div class="trend-item">
+                        <div>
+                            <div class="trend-meta">Teknologi • Trending</div>
+                            <div class="trend-name">#CyberSecurity2026</div>
+                        </div>
+                        <span class="text-secondary text-sm">12.5K</span>
+                    </div>
+                    <div class="trend-item">
+                        <div>
+                            <div class="trend-meta">Privasi • Live</div>
+                            <div class="trend-name">Enkripsi Kuantum</div>
+                        </div>
+                        <span class="text-secondary text-sm">8.2K</span>
+                    </div>
+                    <div class="trend-item">
+                        <div>
+                            <div class="trend-meta">Global</div>
+                            <div class="trend-name">#DigitalRights</div>
+                        </div>
+                        <span class="text-secondary text-sm">5.1K</span>
+                    </div>
+                </div>
+
+                <div class="widget">
+                    <div class="widget-title">Siapa untuk diikuti</div>
+                    <div class="flex items-center justify-between" style="margin-bottom: 1rem;">
+                        <div class="flex items-center gap-2">
+                            <div class="avatar" style="width:40px; height:40px; font-size:1rem; background:linear-gradient(135deg, #10b981, #059669);">E</div>
+                            <div>
+                                <div style="font-weight:600; font-size:0.9rem;">Edward Snow</div>
+                                <div class="text-secondary text-sm">@whistleblower</div>
+                            </div>
+                        </div>
+                        <button class="btn btn-outline" style="padding: 0.25rem 0.75rem; font-size:0.8rem;">Ikuti</button>
+                    </div>
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center gap-2">
+                            <div class="avatar" style="width:40px; height:40px; font-size:1rem; background:linear-gradient(135deg, #f59e0b, #d97706);">W</div>
+                            <div>
+                                <div style="font-weight:600; font-size:0.9rem;">Wired Security</div>
+                                <div class="text-secondary text-sm">@wiredsec</div>
+                            </div>
+                        </div>
+                        <button class="btn btn-outline" style="padding: 0.25rem 0.75rem; font-size:0.8rem;">Ikuti</button>
+                    </div>
+                </div>
+            </aside>
         </div>
-    </header>
+    </div>
 
-    <main>
-        <section id="beranda" class="hero">
-            <div class="container hero-content">
-                <div class="badge-official">Resmi & Terpercaya</div>
-                <h2>Layanan Legalisasi<br>Dokumen Kepabeanan</h2>
-                <p>Platform resmi pengajuan legalisasi dokumen impor, ekspor, dan cukai. Transparan, akuntabel, dan sesuai peraturan perundang-undangan yang berlaku.</p>
-                <div style="margin-top: 30px;">
-                    <a href="#kontak" class="btn btn-primary">Ajukan Permohonan</a>
-                    <a href="#syarat" class="btn btn-outline">Lihat Syarat</a>
-                </div>
-            </div>
-        </section>
+    <!-- Toast Container -->
+    <div class="toast-container" id="toastContainer"></div>
 
-        <section id="layanan" class="section-padding">
-            <div class="container">
-                <div class="section-header reveal">
-                    <h2>Layanan Unggulan</h2>
-                    <div class="divider"></div>
-                    <p>Kami menyediakan layanan terintegrasi untuk mendukung kelancaran kegiatan usaha dan kepatuhan perpajakan Anda.</p>
-                </div>
-
-                <div class="grid-3 reveal">
-                    <div class="card">
-                        <div class="icon-box">📄</div>
-                        <h3>Legalisasi Dokumen</h3>
-                        <p>Verifikasi dan validasi dokumen pabean (PIB/PEB) serta dokumen pelengkap lainnya dengan tanda tangan elektronik resmi.</p>
-                    </div>
-                    <div class="card">
-                        <div class="icon-box">⚖️</div>
-                        <h3>Advokasi & Regulasi</h3>
-                        <p>Layanan konsultasi terkait interpretasi aturan terbaru PMK dan Perdirjen untuk meminimalisir sengketa.</p>
-                    </div>
-                    <div class="card">
-                        <div class="icon-box">🔍</div>
-                        <h3>Verifikasi HS Code</h3>
-                        <p>Penetapan klasifikasi barang (HS Code) yang akurat untuk memastikan tarif bea masuk yang tepat.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="syarat" class="section-padding req-section">
-            <div class="container">
-                <div class="section-header reveal">
-                    <h2>Prosedur & Persyaratan</h2>
-                    <div class="divider"></div>
-                    <p>Pastikan kelengkapan dokumen Anda sebelum mengajukan permohonan untuk mempercepat proses layanan.</p>
-                </div>
-
-                <div class="grid-3 reveal">
-                    <div class="card">
-                        <h3>📋 Dokumen Wajib</h3>
-                        <ul class="list-check">
-                            <li>Surat Permohonan (Format Baku)</li>
-                            <li>Identitas (NPWP, NIB, KTP)</li>
-                            <li>Invoice & Packing List Asli</li>
-                            <li>Bukti Pembayaran Billing (SSCP)</li>
-                        </ul>
-                    </div>
-                    <div class="card">
-                        <h3>⚙️ Alur Proses</h3>
-                        <ul class="list-check">
-                            <li>Pengajuan Online/Offline</li>
-                            <li>Penelitian Administratif</li>
-                            <li>Verifikasi Lapangan (Jika perlu)</li>
-                            <li>Penerbitan Legalisasi (Max 3 Hari)</li>
-                        </ul>
-                    </div>
-                    <div class="card">
-                        <h3>⚠️ Ketentuan Khusus</h3>
-                        <ul class="list-check">
-                            <li>Pengajuan maks. 7 hari pasca transaksi</li>
-                            <li>Dokumen fisik harus dapat dibaca jelas</li>
-                            <li>Biaya PNBP sesuai PP yang berlaku</li>
-                            <li>Kuasa wajib melampirkan Surat Kuasa</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="kontak" class="section-padding" style="background: #f1f5f9;">
-            <div class="container">
-                <div class="section-header reveal">
-                    <h2>Hubungi Kami</h2>
-                    <div class="divider"></div>
-                    <p>Tim kami siap membantu Anda pada jam kerja operasional.</p>
-                </div>
-
-                <div class="contact-wrapper reveal">
-                    <div class="contact-info">
-                        <h3 style="margin-bottom: 30px; font-size: 1.8rem;">Kantor Layanan</h3>
-                        
-                        <div class="contact-item">
-                            <div class="icon">📍</div>
-                            <div>
-                                <h4>Alamat Surat</h4>
-                                <p>Dusun 8 Wonosari, Gg. Teratai, Desa Klumpang Kebun, Kec. Hamparan Perak, Deli Serdang, Sumatera Utara 20374</p>
-                            </div>
-                        </div>
-                        
-                        <div class="contact-item">
-                            <div class="icon">📞</div>
-                            <div>
-                                <h4>Telepon / WhatsApp</h4>
-                                <p>+62 812-6328-5947</p>
-                            </div>
-                        </div>
-
-                        <div class="contact-item">
-                            <div class="icon">✉️</div>
-                            <div>
-                                <h4>Surel Resmi</h4>
-                                <p>legalisasi@beacukai.go.id</p>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="contact-form">
-                        <h3 style="margin-bottom: 25px; color: var(--primary-dark);">Formulir Pengaduan / Tanya Jawab</h3>
-                        <form onsubmit="handleForm(event)">
-                            <div class="form-group">
-                                <label for="name">Nama Lengkap / Institusi</label>
-                                <input type="text" id="name" class="form-control" required placeholder="Contoh: PT. Maju Jaya">
-                            </div>
-                            <div class="form-group">
-                                <label for="email">Alamat Email</label>
-                                <input type="email" id="email" class="form-control" required placeholder="email@perusahaan.com">
-                            </div>
-                            <div class="form-group">
-                                <label for="phone">Nomor Telepon</label>
-                                <input type="tel" id="phone" class="form-control" required placeholder="0812...">
-                            </div>
-                            <div class="form-group">
-                                <label for="message">Pesan / Permohonan</label>
-                                <textarea id="message" rows="4" class="form-control" required placeholder="Jelaskan kebutuhan Anda secara rinci..."></textarea>
-                            </div>
-                            <button type="submit" class="btn btn-primary btn-block">Kirim Pesan</button>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="container">
-            <div class="footer-grid">
-                <div class="footer-brand">
-                    <h2>DJP - Bea Cukai</h2>
-                    <p>Unit vertikal Direktorat Jenderal Bea dan Cukai yang berkomitmen memberikan pelayanan prima dan pengawasan efektif untuk mendukung perekonomian nasional.</p>
-                    <div style="margin-top: 20px; display: flex; gap: 15px;">
-                        <span>🇮🇩 Bangga Melayani Bangsa</span>
-                    </div>
-                </div>
-                <div class="footer-links">
-                    <h4>Tautan Cepat</h4>
-                    <ul>
-                        <li><a href="#beranda">Beranda</a></li>
-                        <li><a href="#layanan">Layanan</a></li>
-                        <li><a href="#syarat">Regulasi</a></li>
-                        <li><a href="#">Tracking Dokumen</a></li>
-                    </ul>
-                </div>
-                <div class="footer-links">
-                    <h4>Bantuan</h4>
-                    <ul>
-                        <li><a href="#">Panduan Pengguna</a></li>
-                        <li><a href="#">FAQ</a></li>
-                        <li><a href="#">Pengaduan</a></li>
-                        <li><a href="#">Kebijakan Privasi</a></li>
-                    </ul>
-                </div>
-                <div class="footer-links">
-                    <h4>Jam Operasional</h4>
-                    <ul>
-                        <li>Senin - Kamis: 07.30 - 17.00</li>
-                        <li>Jumat: 07.30 - 16.30</li>
-                        <li>Sabtu - Minggu: Libur</li>
-                    </ul>
-                </div>
-            </div>
-            <div class="copyright">
-                <p>&copy; 2026 Direktorat Jenderal Pajak - Bea dan Cukai. Hak Cipta Dilindungi Undang-Undang.</p>
-                <p style="margin-top: 5px; color: #6b7280;">Situs ini dikelola untuk kepentingan pelayanan publik.</p>
-            </div>
-        </div>
-    </footer>
-
+    <!-- ===========================
+         4. JAVASCRIPT LOGIC (MOCK API & UI)
+         =========================== -->
     <script>
-        // 1. Sticky Header Effect
-        const header = document.getElementById('header');
-        window.addEventListener('scroll', () => {
-            if (window.scrollY > 50) {
-                header.classList.add('scrolled');
-            } else {
-                header.classList.remove('scrolled');
-            }
-        });
+        const app = {
+            state: {
+                user: null,
+                theme: 'dark',
+                posts: []
+            },
 
-        // 2. Mobile Menu Toggle
-        function toggleMenu() {
-            const nav = document.getElementById('nav-menu');
-            nav.classList.toggle('active');
-        }
+            // --- Initialization ---
+            init() {
+                this.loadTheme();
+                this.checkAuth();
+                this.setupEventListeners();
+            },
 
-        // 3. Scroll Animation (Reveal on Scroll)
-        const revealElements = document.querySelectorAll('.reveal');
+            setupEventListeners() {
+                // Theme Toggle
+                document.getElementById('themeToggle').addEventListener('click', () => {
+                    this.state.theme = this.state.theme === 'dark' ? 'light' : 'dark';
+                    document.documentElement.setAttribute('data-theme', this.state.theme);
+                    const icon = document.querySelector('#themeToggle i');
+                    icon.className = this.state.theme === 'dark' ? 'ph ph-moon' : 'ph ph-sun';
+                    localStorage.setItem('cipher_theme', this.state.theme);
+                });
 
-        function checkReveal() {
-            const triggerBottom = window.innerHeight * 0.85;
+                // Close modal on outside click
+                document.getElementById('authModal').addEventListener('click', (e) => {
+                    if (e.target.id === 'authModal') this.closeAuth();
+                });
+            },
 
-            revealElements.forEach(box => {
-                const boxTop = box.getBoundingClientRect().top;
-                if (boxTop < triggerBottom) {
-                    box.classList.add('active');
+            // --- Theme Management ---
+            loadTheme() {
+                const saved = localStorage.getItem('cipher_theme') || 'dark';
+                this.state.theme = saved;
+                document.documentElement.setAttribute('data-theme', saved);
+                const icon = document.querySelector('#themeToggle i');
+                icon.className = saved === 'dark' ? 'ph ph-moon' : 'ph ph-sun';
+            },
+
+            // --- Auth System ---
+            openAuth(type = 'login') {
+                document.getElementById('authModal').classList.add('active');
+                this.switchAuthTab(type);
+            },
+
+            closeAuth() {
+                document.getElementById('authModal').classList.remove('active');
+            },
+
+            switchAuthTab(type) {
+                const loginTab = document.getElementById('tabLogin');
+                const regTab = document.getElementById('tabRegister');
+                const nameGroup = document.getElementById('nameGroup');
+                const title = document.getElementById('authTitle');
+                const subtitle = document.getElementById('authSubtitle');
+                const btn = document.getElementById('authBtn');
+
+                if (type === 'login') {
+                    loginTab.classList.add('active');
+                    regTab.classList.remove('active');
+                    nameGroup.style.display = 'none';
+                    title.innerText = 'Selamat Datang Kembali';
+                    subtitle.innerText = 'Masuk untuk mengakses feed terenkripsi Anda.';
+                    btn.innerHTML = '<span>Masuk Sekarang</span>';
+                    document.getElementById('authEmail').value = '';
+                    document.getElementById('authPass').value = '';
+                } else {
+                    regTab.classList.add('active');
+                    loginTab.classList.remove('active');
+                    nameGroup.style.display = 'block';
+                    title.innerText = 'Buat Akun Baru';
+                    subtitle.innerText = 'Bergabung dengan jaringan privasi terbesar.';
+                    btn.innerHTML = '<span>Daftar Gratis</span>';
+                    document.getElementById('authEmail').value = '';
+                    document.getElementById('authPass').value = '';
+                    document.getElementById('regName').value = '';
                 }
-            });
-        }
+            },
 
-        window.addEventListener('scroll', checkReveal);
-        // Trigger once on load
-        checkReveal();
+            async handleAuth(e) {
+                e.preventDefault();
+                const btn = document.getElementById('authBtn');
+                const originalText = btn.innerHTML;
+                const isLogin = document.getElementById('tabLogin').classList.contains('active');
+                
+                // Loading State
+                btn.innerHTML = '<div class="loading-spinner"></div>';
+                btn.disabled = true;
 
-        // 4. Form Submission Mockup
-        function handleForm(e) {
-            e.preventDefault();
-            const btn = e.target.querySelector('button');
-            const originalText = btn.innerText;
-            
-            btn.innerText = 'Mengirim...';
-            btn.style.opacity = '0.7';
-            
-            setTimeout(() => {
-                alert('Terima kasih! Pesan Anda telah terkirim ke sistem kami. Petugas akan segera menghubungi Anda.');
-                e.target.reset();
-                btn.innerText = originalText;
-                btn.style.opacity = '1';
-            }, 1500);
-        }
+                // Simulate API Delay
+                await new Promise(r => setTimeout(r, 1500));
+
+                if (isLogin) {
+                    // Mock Login Success
+                    this.state.user = {
+                        name: 'Alex Cipher',
+                        email: document.getElementById('authEmail').value,
+                        avatar: 'AC'
+                    };
+                    this.showToast('Login Berhasil! Mengenkripsi sesi...', 'success');
+                    setTimeout(() => {
+                        this.closeAuth();
+                        this.loadDashboard();
+                    }, 500);
+                } else {
+                    // Mock Register Success
+                    this.state.user = {
+                        name: document.getElementById('regName').value || 'User Baru',
+                        email: document.getElementById('authEmail').value,
+                        avatar: 'UB'
+                    };
+                    this.showToast('Akun dibuat! Kunci enkripsi dihasilkan.', 'success');
+                    setTimeout(() => {
+                        this.closeAuth();
+                        this.loadDashboard();
+                    }, 500);
+                }
+
+                btn.innerHTML = originalText;
+                btn.disabled = false;
+            },
+
+            checkAuth() {
+                // In a real app, check localStorage token here
+                // For demo, we start at landing page
+            },
+
+            logout() {
+                if(confirm('Yakin ingin keluar? Sesi enkripsi akan dihapus.')) {
+                    this.state.user = null;
+                    document.getElementById('app-dashboard').style.display = 'none';
+                    document.getElementById('landing-page').style.display = 'flex';
+                    document.body.style.overflow = 'auto';
+                    this.showToast('Anda telah keluar.', 'success');
+                }
+            },
+
+            // --- Dashboard Logic ---
+            loadDashboard() {
+                document.getElementById('landing-page').style.display = 'none';
+                document.getElementById('app-dashboard').style.display = 'block';
+                document.body.style.overflow = 'hidden'; // Prevent double scroll
+                
+                // Update User Info
+                document.getElementById('currentUserAvatar').innerText = this.state.user.avatar || 'U';
+                
+                // Load Mock Posts
+                this.fetchPosts();
+            },
+
+            async fetchPosts() {
+                const container = document.getElementById('postsList');
+                container.innerHTML = this.getSkeletonHTML(3); // Show skeletons
+
+                // Mock API Fetch
+                await new Promise(r => setTimeout(r, 1200));
+
+                const mockData = [
+                    {
+                        id: 1,
+                        user: 'Sarah Connor',
+                        handle: '@resistance',
+                        avatar: 'SC',
+                        color: 'linear-gradient(135deg, #ef4444, #b91c1c)',
+                        content: 'Keamanan bukan produk, tapi sebuah proses. Pastikan Anda selalu memperbarui kunci enkripsi Anda. 🔐 #CyberSecurity',
+                        time: '2 jam yang lalu',
+                        likes: 124,
+                        comments: 18,
+                        image: null
+                    },
+                    {
+                        id: 2,
+                        user: 'Tech Daily',
+                        handle: '@techdaily',
+                        avatar: 'TD',
+                        color: 'linear-gradient(135deg, #3b82f6, #1d4ed8)',
+                        content: 'Review terbaru tentang protokol Signal vs Matrix. Mana yang lebih Anda percayai untuk komunikasi massal? 🤔',
+                        time: '5 jam yang lalu',
+                        likes: 856,
+                        comments: 342,
+                        image: 'https://images.unsplash.com/photo-1550751827-4bd374c3f58b?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80'
+                    },
+                    {
+                        id: 3,
+                        user: 'Crypto King',
+                        handle: '@btc_maxi',
+                        avatar: 'CK',
+                        color: 'linear-gradient(135deg, #f59e0b, #d97706)',
+                        content: 'Desentralisasi adalah satu-satunya jalan menuju kebebasan digital. Jangan percaya, verifikasi! 🚀',
+                        time: '1 hari yang lalu',
+                        likes: 2300,
+                        comments: 156,
+                        image: null
+                    }
+                ];
+
+                this.state.posts = mockData;
+                this.renderPosts();
+            },
+
+            renderPosts() {
+                const container = document.getElementById('postsList');
+                container.innerHTML = '';
+                
+                this.state.posts.forEach(post => {
+                    const html = `
+                        <div class="post-card" id="post-${post.id}">
+                            <div class="post-header">
+                                <div class="avatar" style="background:${post.color}">${post.avatar}</div>
+                                <div class="user-info">
+                                    <h4>${post.user} <span style="color:var(--text-muted); font-weight:400;">${post.handle}</span></h4>
+                                    <span>${post.time} • 🌍 Publik</span>
+                                </div>
+                                <button class="btn-ghost" style="margin-left:auto;"><i class="ph ph-dots-three"></i></button>
+                            </div>
+                            <div class="post-content">${post.content}</div>
+                            ${post.image ? `<img src="${post.image}" class="post-image" alt="Post Image">` : ''}
+                            <div class="post-stats">
+                                <span>${post.likes} Suka</span>
+                                <span>${post.comments} Komentar</span>
+                            </div>
+                            <div class="post-actions-bar">
+                                <button class="action-btn" onclick="app.toggleLike(${post.id})">
+                                    <i class="ph ph-heart"></i> <span>Suka</span>
+                                </button>
+                                <button class="action-btn">
+                                    <i class="ph ph-chat-circle"></i> <span>Komentar</span>
+                                </button>
+                                <button class="action-btn">
+                                    <i class="ph ph-share-network"></i> <span>Bagikan</span>
+                                </button>
+                            </div>
+                        </div>
+                    `;
+                    container.innerHTML += html;
+                });
+            },
+
+            getSkeletonHTML(count) {
+                let html = '';
+                for(let i=0; i<count; i++) {
+                    html += `
+                        <div class="post-card" style="padding:1.5rem;">
+                            <div class="flex gap-4" style="margin-bottom:1rem;">
+                                <div class="skeleton sk-avatar"></div>
+                                <div style="flex:1;">
+                                    <div class="skeleton sk-title" style="width:40%;"></div>
+                                    <div class="skeleton sk-text" style="width:20%;"></div>
+                                </div>
+                            </div>
+                            <div class="skeleton sk-text"></div>
+                            <div class="skeleton sk-text"></div>
+                            <div class="skeleton sk-text" style="width:60%;"></div>
+                        </div>
+                    `;
+                }
+                return html;
+            },
+
+            async createPost() {
+                const input = document.getElementById('postInput');
+                const btn = document.getElementById('btnPost');
+                const content = input.value.trim();
+
+                if (!content) {
+                    this.showToast('Tulis sesuatu terlebih dahulu!', 'error');
+                    return;
+                }
+
+                // UI Loading
+                const originalBtn = btn.innerHTML;
+                btn.innerHTML = '<div class="loading-spinner" style="width:16px; height:16px; border-color:rgba(255,255,255,0.3); border-top-color:white;"></div>';
+                btn.disabled = true;
+
+                // Mock API Post
+                await new Promise(r => setTimeout(r, 800));
+
+                const newPost = {
+                    id: Date.now(),
+                    user: this.state.user.name,
+                    handle: '@me',
+                    avatar: this.state.user.avatar,
+                    color: 'linear-gradient(135deg, #6366f1, #4f46e5)',
+                    content: content,
+                    time: 'Baru saja',
+                    likes: 0,
+                    comments: 0,
+                    image: null
+                };
+
+                this.state.posts.unshift(newPost);
+                this.renderPosts();
+                
+                input.value = '';
+                btn.innerHTML = originalBtn;
+                btn.disabled = false;
+                
+                this.showToast('Posting berhasil dienkripsi & dipublikasikan!', 'success');
+                
+                // Scroll to top smoothly
+                document.getElementById('feedContainer').scrollTo({ top: 0, behavior: 'smooth' });
+            },
+
+            toggleLike(id) {
+                const post = this.state.posts.find(p => p.id === id);
+                if (post) {
+                    post.likes++;
+                    this.renderPosts();
+                    // In real app, send API request
+                }
+            },
+
+            // --- Utilities ---
+            showToast(message, type = 'success') {
+                const container = document.getElementById('toastContainer');
+                const toast = document.createElement('div');
+                toast.className = `toast ${type}`;
+                
+                const icon = type === 'success' ? 'ph-check-circle' : 'ph-warning-circle';
+                const color = type === 'success' ? 'var(--success)' : 'var(--danger)';
+                
+                toast.innerHTML = `
+                    <i class="ph ${icon}" style="font-size:1.5rem; color:${color}"></i>
+                    <span style="font-weight:500;">${message}</span>
+                `;
+                
+                container.appendChild(toast);
+                
+                setTimeout(() => {
+                    toast.style.opacity = '0';
+                    toast.style.transform = 'translateX(100%)';
+                    setTimeout(() => toast.remove(), 300);
+                }, 3000);
+            }
+        };
+
+        // Start App
+        document.addEventListener('DOMContentLoaded', () => {
+            app.init();
+        });
     </script>
 </body>
 </html>
